@@ -1,0 +1,25 @@
+@import '../../Global.scss';
+
+.header {
+  background-color: $colorGreen;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+
+  .align-text {
+    display: flex;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    button {
+      height: 30%;
+    }
+
+    img {
+      width: 20vw;
+      height: auto;
+    }
+  }
+}

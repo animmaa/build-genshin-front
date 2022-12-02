@@ -1,0 +1,30 @@
+@import '../../Global.scss';
+
+.homepage {
+  height: $heightComponent;
+  background-color: $colorOrange;
+  .text-pres {
+    padding-top: 3vh;
+    height: 10vh;
+    color: $colorGreen;
+    text-align: center;
+  }
+  .list-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    button {
+      height: 6vh;
+      margin-top: 3vh;
+      width: 85vw;
+      border: solid 3px;
+      border-radius: 20px;
+      border-color: $colorGreen;
+      color: $colorGreen;
+      background-color: $colorYellow;
+    }
+  }
+  .anim-home{
+    margin-top: 100px;
+  }
+}
