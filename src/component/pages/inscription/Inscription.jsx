@@ -1,27 +1,60 @@
-import React, { useState } from 'react'
+import React from 'react';
+import { set, useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Inscription = () => {
-    const [inputForm, setInputForm] = useState({
-        pseudo: "",
-        email: "",
-        password: ""
-    })
+  const [error, setError] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const navigate = useNavigate();
+
+  const onSubmit = async (values) => {
+    await axios
+      .post(`http://localhost:8000/api/user/createuser`, values)
+      .then((data) => {
+        //console.log(data)
+        navigate('/');
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
+  };
+
   return (
     <div>
-        <form action="">
-            <label htmlFor="">Pseudo
-                <input type="text" />
-            </label>
-            <label htmlFor="">Email
-                <input type="text" />
-            </label>
-            <label htmlFor="">Password
-                <input type="text" />
-            </label>
-            <input type="submit" value="Creer compte" />
-        </form>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="pseudo">
+          Pseudo
+          <input
+            id="pseudo"
+            {...register('pseudo', { required: true, maxLength: 30 })}
+          />
+          {errors.pseudo && errors.pseudo.type === 'required' && (
+            <span>This is required</span>
+          )}
+          {errors.pseudo && errors.pseudo.type === 'maxLength' && (
+            <span>Max length exceeded</span>
+          )}
+          <br />
+        </label>
+        <label htmlFor="">
+          Password
+          <input {...register('password', { required: true })} id="password" />
+          {errors.password && errors.password.type === 'required' && (
+            <span>This is required</span>
+          )}
+        </label>
+        <h5>{error}</h5>
+        <input type="submit" value="Creer compte" />
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default Inscription
+export default Inscription;

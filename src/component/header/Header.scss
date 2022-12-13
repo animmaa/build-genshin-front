@@ -16,10 +16,12 @@
     button {
       height: 30%;
     }
-
-    img {
-      width: 20vw;
-      height: auto;
+    .image-logo {
+      height: 100%;
+      img {
+        width: auto;
+        height: 80%;
+      }
     }
   }
 }
