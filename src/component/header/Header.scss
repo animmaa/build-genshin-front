@@ -2,7 +2,7 @@
 
 .header {
   background-color: $colorGreen;
-  height: 10vh;
+  height: $heightHeader;
   display: flex;
   flex-direction: column;
 
@@ -18,9 +18,11 @@
     }
     .image-logo {
       height: 100%;
-      img {
-        width: auto;
-        height: 80%;
+      a {
+        img {
+          width: auto;
+          height: 80%;
+        }
       }
     }
   }

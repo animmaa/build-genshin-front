@@ -1,0 +1,9 @@
+.grid_deck {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: green;
+    .deck {
+      padding: 10px 3vw;
+      width: 40vw;
+    }
+  }

@@ -1,0 +1,35 @@
+@import '../../../Global.scss';
+
+.profil {
+  height: $heightComponent;
+  background-color: $colorOrange;
+
+  .list-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    a {
+      height: 6vh;
+      margin-top: 3vh;
+      width: 85vw;
+      background-color: aqua;
+      display: flex;
+      align-items: center;
+      border-radius: 20px;
+      text-decoration: none;
+      button {
+        height: 100%;
+        width: 100%;
+        border: solid 3px;
+        border-radius: 20px;
+        border-color: $colorGreen;
+        color: $colorGreen;
+        background-color: $colorYellow;
+      }
+    }
+    // button:hover {
+    //     cursor: pointer;   // pour le desktop
+    // }
+  }
+}

@@ -19,7 +19,7 @@ const Inscription = () => {
       .post(`http://localhost:8000/api/user/createuser`, values)
       .then((data) => {
         //console.log(data)
-        navigate('/');
+        navigate('/connection');
       })
       .catch((err) => {
         setError(err.response.data.message);

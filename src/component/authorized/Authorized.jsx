@@ -1,9 +1,9 @@
-// import { Navigate, Outlet } from 'react-router-dom';
-// import { useLogin } from '../../context/loginProvider';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useLogin } from '../../context/loginProvider';
 
-// const Authorized = () => {
-//   const { admin } = useLogin();
-//   return admin ? <Outlet /> : <Navigate to="/inscription" />;
-// };
+const Authorized = () => {
+  const { user } = useLogin();
+  return user ? <Outlet /> : <Navigate to="/connection" />;
+};
 
-// export default Authorized;
+export default Authorized;

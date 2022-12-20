@@ -1,9 +1,12 @@
 import './Cards.scss'
 import React from 'react'
+import CardsListLog from './CardsList/CardsListLog'
 
 const Cards = () => {
   return (
-    <div className='cards'>Cards</div>
+    <div className='cards'>
+      <CardsListLog />
+    </div>
   )
 }
 

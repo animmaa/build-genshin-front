@@ -1,29 +1,29 @@
-// import { useState, createContext, useContext, useEffect } from 'react';
+import { useState, createContext, useContext, useEffect } from 'react';
 
-// const LoginContext = createContext(null);
+const LoginContext = createContext(null);
 
-// const LoginProvider = ({ children }) => {
-//   const [log, setLog] = useState(
-//     localStorage.getItem('log')
-//       ? JSON.parse(localStorage.getItem('log'))
-//       : null
-//   );
+const LoginProvider = ({ children }) => {
+  const [user, setUser] = useState(
+    localStorage.getItem('user')
+      ? JSON.parse(localStorage.getItem('user'))
+      :  null
+  );
 
-//   useEffect(() => {
-//     if (log) {
-//       localStorage.setItem('log', JSON.stringify(log));
-//     } else {
-//       localStorage.removeItem('log');
-//     }
-//   }, [log]);
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('user');
+    }
+  }, [user]);
 
-//   return (
-//     <LoginContext.Provider value={{ log, setLog }}>
-//       {children}
-//     </LoginContext.Provider>
-//   );
-// };
+  return (
+    <LoginContext.Provider value={{ user, setUser }}>
+      {children}
+    </LoginContext.Provider>
+  );
+};
 
-// export const useLogin = () => useContext(LoginContext);
+export const useLogin = () => useContext(LoginContext);
 
-// export default LoginProvider;
+export default LoginProvider;

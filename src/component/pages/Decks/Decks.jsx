@@ -1,7 +1,31 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useLogin } from '../../../context/loginProvider';
+import Deck from './Deck/Deck';
+import './Decks.scss'
 
 const Decks = () => {
-  return <div>Decks</div>;
+  const { user } = useLogin();
+  const [decks, setDecks] = useState([]);
+  const getDeck = () => {
+    axios.get(`http://localhost:8000/api/deck/${user.id}`).then((response) => {
+      setDecks(response.data);
+    });
+  };
+
+  useEffect(() => {
+    getDeck();
+  }, []);
+
+  return (
+    <div className='grid_deck'>
+      {decks.map((deck) => (
+        <div className='deck'>
+          <Deck deckName={deck.namedeck} />
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default Decks;
