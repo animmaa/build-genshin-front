@@ -11,7 +11,7 @@ const CreateDeck = () => {
     user: { id },
   } = useLogin();
   const [decks, setDecks] = useState([]);
-  //const navigator = useNavigate()
+
   const addDeck = async (deckName) => {
     await axios.post(`http://localhost:8000/api/deck/deckadd/${id}`, {
       namedeck: deckName,

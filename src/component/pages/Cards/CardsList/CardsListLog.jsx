@@ -11,7 +11,31 @@ const CardsListLog = () => {
   const { user, choiceDeck } = useLogin();
   const [cardList, setCardList] = useState([]);
   const navigator = useNavigate();
-  const [triCarte, setTriCarte] = useState("personnage")
+  const [triCarte, setTriCarte] = useState('personnage');
+  const [nomberPersonnage, setNomberPersonnage] = useState(0);
+  const [nomberCardInTheDeck, setNomberCardInTheDeck] = useState(0);
+
+  const getPersonnageNumberCardInTheDeck = async () => {
+    if (choiceDeck) {
+      await axios
+        .get(`http://localhost:8000/api/deck/totalpersonnage/${choiceDeck}`)
+        .then((response) => {
+          setNomberPersonnage(response.data.numberPersonnageCard);
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
+  const getNumberTotalCardInTheDeck = async () => {
+    if (choiceDeck) {
+      await axios
+        .get(`http://localhost:8000/api/deck/totalcard/${choiceDeck}`)
+        .then((response) => {
+          setNomberCardInTheDeck(response.data.numberCard);
+        })
+        .catch((err) => console.log(err));
+    }
+  };
 
   const getCardsList = async () => {
     await axios
@@ -27,34 +51,43 @@ const CardsListLog = () => {
         navigator('/');
       });
   };
-  const getNumberCardInTheDeck = async () => {
-    await axios.get(`localhost:8000/api/deck/number/4/3`).then((response) => {
-      console.log(response)
-    })
-  }
-//console.log(choiceDeck)
+
   useEffect(() => {
     getCardsList();
   }, [triCarte]);
-  //console.log(cardList);
+
   return (
     <div className="cards_list_log">
       <div>
         <h3>Liste des cartes</h3>
       </div>
       <div>
-        <button onClick={() => setTriCarte("personnage")}>Cartes personnages</button>
-        <button onClick={() => setTriCarte("event")}>Cartes évènement</button>
-        <button onClick={() => setTriCarte("equipement")}>Cartes équipement</button>
-        <button onClick={() => setTriCarte("support")}>Cartes support</button>
+        <button onClick={() => setTriCarte('personnage')}>
+          Cartes personnages
+        </button>
+        <button onClick={() => setTriCarte('event')}>Cartes évènement</button>
+        <button onClick={() => setTriCarte('equipement')}>
+          Cartes équipement
+        </button>
+        <button onClick={() => setTriCarte('support')}>Cartes support</button>
       </div>
+      <h4>Nombre carte personnage {nomberPersonnage} </h4>
+      <h4>Nombre carte dans le deck {nomberCardInTheDeck}</h4>
       <div className="grid_cards">
         {cardList.map((el) => (
           <div className="test" key={el.id}>
             <div>
               <img src={el.url} alt="" />
             </div>
-            <Card nameCard={el.name} elementCard={el.element} id_card={el.id} />
+            <Card
+              nameCard={el.name}
+              elementCard={el.element}
+              id_card={el.id}
+              getPersonnageNumberCardInTheDeck={
+                getPersonnageNumberCardInTheDeck
+              }
+              getNumberTotalCardInTheDeck={getNumberTotalCardInTheDeck}
+            />
           </div>
         ))}
       </div>
