@@ -6,7 +6,7 @@ const HomePage = () => {
     <div className="homepage">
       <div className="text-pres">texte de presentation</div>
       <div className="list-btn">
-        <a href="/login/cardlist">
+        <a href="/card">
           <button>Liste des cartes</button>
         </a>
         <a href="/inscription">

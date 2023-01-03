@@ -3,6 +3,7 @@ import { useState, createContext, useContext, useEffect } from 'react';
 const LoginContext = createContext(null);
 
 const LoginProvider = ({ children }) => {
+  const [choiceDeck, setChoiceDeck] = useState();
   const [user, setUser] = useState(
     localStorage.getItem('user')
       ? JSON.parse(localStorage.getItem('user'))
@@ -18,7 +19,7 @@ const LoginProvider = ({ children }) => {
   }, [user]);
 
   return (
-    <LoginContext.Provider value={{ user, setUser }}>
+    <LoginContext.Provider value={{ user, setUser, choiceDeck, setChoiceDeck }}>
       {children}
     </LoginContext.Provider>
   );

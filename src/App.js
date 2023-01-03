@@ -25,9 +25,8 @@ function App() {
             <Route element={<Authorized />}>
               <Route path="/profil" element={<Profil />} />
               <Route path="/cardlist" element={<Cards />} />
+              <Route path="/mydecks" element={<CreateDeck />} />
             </Route>
-            <Route path="/login/mydecks" element={<Decks />} />
-            <Route path="/login/newdeck" element={<CreateDeck />} />
           </Routes>
         </Router>
       </LoginProvider>
