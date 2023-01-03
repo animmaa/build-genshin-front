@@ -1,17 +1,16 @@
 import axios from 'axios';
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useLogin } from '../../../../context/loginProvider';
 import './Card.scss';
 
-const Card = ({
+function Card({
   nameCard,
   elementCard,
-  id_card,
+  idCard,
   getPersonnageNumberCardInTheDeck,
   getNumberTotalCardInTheDeck,
-}) => {
+}) {
   const { choiceDeck } = useLogin();
   const [numberCard, setNumberCard] = useState();
   // console.log(choiceDeck);
@@ -21,7 +20,7 @@ const Card = ({
   const getNumberCardInTheDeck = async () => {
     if (choiceDeck) {
       await axios
-        .get(`http://localhost:8000/api/deck/number/${id_card}/${choiceDeck}`)
+        .get(`http://localhost:8000/api/deck/number/${idCard}/${choiceDeck}`)
         .then((response) => {
           setNumberCard(response.data.numberCard);
         })
@@ -30,14 +29,17 @@ const Card = ({
   };
 
   const addCardInTheDeck = async () => {
-    // console.log(id_card, 'ajout');
+    // console.log(idCard, 'ajout');
     await axios
-      .post(`http://localhost:8000/api/card/addcardindeck/${choiceDeck}`, {
-        card_id: id_card,
-      })
+      .post(
+        `http://localhost:8000/api/card/addcardindeck/${choiceDeck}/${idCard}`,
+        {
+          card_id: idCard,
+        },
+      )
       .then(() => {
         getNumberCardInTheDeck();
-        console.log(`ajout de la carte ${id_card} du deck ${choiceDeck}`);
+        console.log(`ajout de la carte ${idCard} du deck ${choiceDeck}`);
       })
       .catch((err) => console.log(err));
   };
@@ -45,11 +47,11 @@ const Card = ({
   const deleteCardInTheDeck = async () => {
     await axios
       .delete(
-        `http://localhost:8000/api/card/deletecardindeck/${choiceDeck}/${id_card}`
+        `http://localhost:8000/api/card/deletecardindeck/${choiceDeck}/${idCard}`,
       )
       .then(() => {
         getNumberCardInTheDeck();
-        console.log(`suppression de la carte ${id_card} du deck ${choiceDeck}`);
+        console.log(`suppression de la carte ${idCard} du deck ${choiceDeck}`);
       })
       .catch((err) => console.log(err));
   };
@@ -81,15 +83,21 @@ const Card = ({
       {choiceDeck && (
         <div className="number_card">
           <button
+            type="button"
             onClick={() => deleteCardInTheDeck()}
-            disabled={disableNegative ? true : false}
+            disabled={!!disableNegative}
           >
             -
           </button>
-          <div> {numberCard} </div>
+          <div>
+            {' '}
+            {numberCard}
+            {' '}
+          </div>
           <button
+            type="button"
             onClick={() => addCardInTheDeck()}
-            disabled={disablePositif ? true : false}
+            disabled={!!disablePositif}
           >
             +
           </button>
@@ -97,6 +105,14 @@ const Card = ({
       )}
     </div>
   );
+}
+
+Card.propTypes = {
+  nameCard: PropTypes.string.isRequired,
+  elementCard: PropTypes.string.isRequired,
+  idCard: PropTypes.number.isRequired,
+  getPersonnageNumberCardInTheDeck: PropTypes.instanceOf(Promise).isRequired,
+  getNumberTotalCardInTheDeck: PropTypes.instanceOf(Promise).isRequired,
 };
 
 export default Card;

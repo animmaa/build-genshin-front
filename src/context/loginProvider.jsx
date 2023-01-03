@@ -1,13 +1,20 @@
-import { useState, createContext, useContext, useEffect } from 'react';
+import React, {
+  useState,
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+} from 'react';
+import PropTypes from 'prop-types';
 
 const LoginContext = createContext(null);
 
-const LoginProvider = ({ children }) => {
+function LoginProvider({ children }) {
   const [choiceDeck, setChoiceDeck] = useState();
   const [user, setUser] = useState(
     localStorage.getItem('user')
       ? JSON.parse(localStorage.getItem('user'))
-      :  null
+      : null,
   );
 
   useEffect(() => {
@@ -18,11 +25,23 @@ const LoginProvider = ({ children }) => {
     }
   }, [user]);
 
-  return (
-    <LoginContext.Provider value={{ user, setUser, choiceDeck, setChoiceDeck }}>
-      {children}
-    </LoginContext.Provider>
+  const valueMemo = useMemo(
+    () => ({
+      user,
+      setUser,
+      choiceDeck,
+      setChoiceDeck,
+    }),
+    [user, choiceDeck],
   );
+
+  return (
+    <LoginContext.Provider value={valueMemo}>{children}</LoginContext.Provider>
+  );
+}
+
+LoginProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export const useLogin = () => useContext(LoginContext);

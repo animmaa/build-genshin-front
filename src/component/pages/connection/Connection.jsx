@@ -1,12 +1,11 @@
 import axios from 'axios';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../../../context/loginProvider';
 
-const Connection = () => {
-  const { user, setUser } = useLogin();
+function Connection() {
+  const { setUser } = useLogin();
   const [error, setError] = useState(null);
   const {
     register,
@@ -23,7 +22,7 @@ const Connection = () => {
         setUser({
           token: data.credential,
           pseudo: values.pseudo,
-          id: data.id
+          id: data.id,
         });
         localStorage.setItem('jwt', data.credential);
         navigate('/profil');
@@ -36,7 +35,7 @@ const Connection = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="">
+        <label htmlFor="pseudo">
           Pseudo
           <input
             type="text"
@@ -48,7 +47,7 @@ const Connection = () => {
           )}
         </label>
         <br />
-        <label htmlFor="">
+        <label htmlFor="password">
           Password
           <input
             type="text"
@@ -65,6 +64,6 @@ const Connection = () => {
       </form>
     </div>
   );
-};
+}
 
 export default Connection;

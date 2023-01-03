@@ -1,10 +1,9 @@
-import React from 'react';
-import { set, useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
-const Inscription = () => {
+function Inscription() {
   const [error, setError] = useState('');
   const {
     register,
@@ -16,9 +15,9 @@ const Inscription = () => {
 
   const onSubmit = async (values) => {
     await axios
-      .post(`http://localhost:8000/api/user/createuser`, values)
-      .then((data) => {
-        //console.log(data)
+      .post('http://localhost:8000/api/user/createuser', values)
+      .then(() => {
+        // console.log(data)
         navigate('/connection');
       })
       .catch((err) => {
@@ -43,7 +42,7 @@ const Inscription = () => {
           )}
           <br />
         </label>
-        <label htmlFor="">
+        <label htmlFor="password">
           Password
           <input {...register('password', { required: true })} id="password" />
           {errors.password && errors.password.type === 'required' && (
@@ -55,6 +54,6 @@ const Inscription = () => {
       </form>
     </div>
   );
-};
+}
 
 export default Inscription;

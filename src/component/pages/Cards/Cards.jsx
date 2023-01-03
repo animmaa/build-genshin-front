@@ -1,13 +1,13 @@
-import './Cards.scss'
-import React from 'react'
-import CardsListLog from './CardsList/CardsListLog'
+import './Cards.scss';
+import React from 'react';
+import CardsListLog from './CardsList/CardsListLog';
 
-const Cards = () => {
+function Cards() {
   return (
-    <div className='cards'>
+    <div className="cards">
       <CardsListLog />
     </div>
-  )
+  );
 }
 
-export default Cards
+export default Cards;
