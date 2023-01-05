@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './component/header/Header';
 import HomePage from './component/homePage/HomePage';
@@ -7,7 +8,6 @@ import Inscription from './component/pages/inscription/Inscription';
 import Connection from './component/pages/connection/Connection';
 import LoginProvider from './context/loginProvider';
 import Profil from './component/pages/profil/Profil';
-import Decks from './component/pages/Decks/Decks';
 import CreateDeck from './component/pages/Decks/CreateDeck/CreateDeck';
 import Authorized from './component/authorized/Authorized';
 

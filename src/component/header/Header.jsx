@@ -1,11 +1,11 @@
 import './Header.scss';
-import logocard from './../../assets/logocard.jpg';
-
 import React from 'react';
+import logocard from '../../assets/logocard.jpg';
+
 import { useLogin } from '../../context/loginProvider';
 
-const Header = () => {
-  const { user, setUser } = useLogin();
+function Header() {
+  const { user } = useLogin();
 
   const handleDeleteLocalStorage = () => {
     localStorage.removeItem('user');
@@ -16,7 +16,9 @@ const Header = () => {
       {user ? (
         <div className="align-text">
           <a href="/Connection">
-            <button onClick={handleDeleteLocalStorage}>deconnection</button>
+            <button type="button" onClick={handleDeleteLocalStorage}>
+              deconnection
+            </button>
           </a>
           <div className="image-logo">
             <a href="/">
@@ -30,7 +32,7 @@ const Header = () => {
       ) : (
         <div className="align-text">
           <a href="/Connection">
-            <button>Connection</button>
+            <button type="button">Connection</button>
           </a>
           <div className="image-logo">
             <a href="/">
@@ -38,12 +40,12 @@ const Header = () => {
             </a>
           </div>
           <a href="/inscription">
-            <button>Inscription</button>
+            <button type="button">Inscription</button>
           </a>
         </div>
       )}
     </div>
   );
-};
+}
 
 export default Header;

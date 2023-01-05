@@ -1,13 +1,11 @@
 import axios from 'axios';
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import Card from './Card';
-import './CardsListLog.scss';
-import { useLogin } from '../../../../context/loginProvider';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Card from './Card';
+import { useLogin } from '../../../../context/loginProvider';
+import './CardsListLog.scss';
 
-const CardsListLog = () => {
+function CardsListLog() {
   const { user, choiceDeck } = useLogin();
   const [cardList, setCardList] = useState([]);
   const navigator = useNavigate();
@@ -62,17 +60,27 @@ const CardsListLog = () => {
         <h3>Liste des cartes</h3>
       </div>
       <div>
-        <button onClick={() => setTriCarte('personnage')}>
+        <button type="button" onClick={() => setTriCarte('personnage')}>
           Cartes personnages
         </button>
-        <button onClick={() => setTriCarte('event')}>Cartes évènement</button>
-        <button onClick={() => setTriCarte('equipement')}>
+        <button type="button" onClick={() => setTriCarte('event')}>
+          Cartes évènement
+        </button>
+        <button type="button" onClick={() => setTriCarte('equipement')}>
           Cartes équipement
         </button>
-        <button onClick={() => setTriCarte('support')}>Cartes support</button>
+        <button type="button" onClick={() => setTriCarte('support')}>
+          Cartes support
+        </button>
       </div>
-      <h4>Nombre carte personnage {nomberPersonnage} </h4>
-      <h4>Nombre carte dans le deck {nomberCardInTheDeck}</h4>
+      <h4>
+        Nombre carte personnage
+        {nomberPersonnage}
+      </h4>
+      <h4>
+        Nombre carte dans le deck
+        {nomberCardInTheDeck}
+      </h4>
       <div className="grid_cards">
         {cardList.map((el) => (
           <div className="test" key={el.id}>
@@ -82,7 +90,7 @@ const CardsListLog = () => {
             <Card
               nameCard={el.name}
               elementCard={el.element}
-              id_card={el.id}
+              idCard={el.id}
               getPersonnageNumberCardInTheDeck={
                 getPersonnageNumberCardInTheDeck
               }
@@ -93,6 +101,10 @@ const CardsListLog = () => {
       </div>
     </div>
   );
-};
+}
+
+// CardsListLog.propTypes = {
+//   children: PropTypes.element.isRequired,
+// };
 
 export default CardsListLog;

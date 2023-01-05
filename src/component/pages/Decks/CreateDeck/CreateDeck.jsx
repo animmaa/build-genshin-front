@@ -1,23 +1,14 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { useLogin } from '../../../../context/loginProvider';
 import Deck from '../Deck/Deck';
 
-const CreateDeck = () => {
+function CreateDeck() {
   const [nameNewDeck, setNameNewDeck] = useState();
   const {
     user: { id },
   } = useLogin();
   const [decks, setDecks] = useState([]);
-
-  const addDeck = async (deckName) => {
-    await axios.post(`http://localhost:8000/api/deck/deckadd/${id}`, {
-      namedeck: deckName,
-    });
-    getDeck();
-  };
 
   const getDeck = () => {
     axios.get(`http://localhost:8000/api/deck/${id}`).then((response) => {
@@ -25,6 +16,12 @@ const CreateDeck = () => {
     });
   };
 
+  const addDeck = async (deckName) => {
+    await axios.post(`http://localhost:8000/api/deck/deckadd/${id}`, {
+      namedeck: deckName,
+    });
+    getDeck();
+  };
   useEffect(() => {
     getDeck();
   }, []);
@@ -32,10 +29,11 @@ const CreateDeck = () => {
   return (
     <div>
       <div>
-        <label htmlFor="">
+        <label htmlFor="nameDeck">
           Nom du deck
           <input
             type="text"
+            id="nameDeck"
             onChange={(event) => setNameNewDeck(event.target.value)}
           />
         </label>
@@ -50,12 +48,12 @@ const CreateDeck = () => {
       <div className="grid_deck">
         {decks.map((deck) => (
           <div className="deck">
-            <Deck deckName={deck.namedeck} id_deck={deck.id} />
+            <Deck deckName={deck.namedeck} idDeck={deck.id} />
           </div>
         ))}
       </div>
     </div>
   );
-};
+}
 
 export default CreateDeck;
