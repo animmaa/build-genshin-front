@@ -78,7 +78,7 @@ function Card({
     <div>
       <div className="card">
         <div>{nameCard}</div>
-        <div>{elementCard}</div>
+        {elementCard && <div>{elementCard}</div>}
       </div>
       {choiceDeck && (
         <div className="number_card">
@@ -111,8 +111,8 @@ Card.propTypes = {
   nameCard: PropTypes.string.isRequired,
   elementCard: PropTypes.string.isRequired,
   idCard: PropTypes.number.isRequired,
-  getPersonnageNumberCardInTheDeck: PropTypes.instanceOf(Promise).isRequired,
-  getNumberTotalCardInTheDeck: PropTypes.instanceOf(Promise).isRequired,
+  getPersonnageNumberCardInTheDeck: PropTypes.func.isRequired,
+  getNumberTotalCardInTheDeck: PropTypes.func.isRequired,
 };
 
 export default Card;

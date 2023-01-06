@@ -1,6 +1,5 @@
 import './Header.scss';
 import React from 'react';
-import logocard from '../../assets/logocard.jpg';
 
 import { useLogin } from '../../context/loginProvider';
 
@@ -20,11 +19,9 @@ function Header() {
               deconnection
             </button>
           </a>
-          <div className="image-logo">
-            <a href="/">
-              <img src={logocard} alt="" />
-            </a>
-          </div>
+          <a href="/cardlist">
+            <button type="button">Liste des cartes</button>
+          </a>
           <a href="/profil">
             <h4>{user.pseudo}</h4>
           </a>
@@ -34,11 +31,9 @@ function Header() {
           <a href="/Connection">
             <button type="button">Connection</button>
           </a>
-          <div className="image-logo">
-            <a href="/">
-              <img src={logocard} alt="" />
-            </a>
-          </div>
+          <a href="/cardlist">
+            <button type="button">Liste des cartes</button>
+          </a>
           <a href="/inscription">
             <button type="button">Inscription</button>
           </a>

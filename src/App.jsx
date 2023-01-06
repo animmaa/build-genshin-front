@@ -19,12 +19,11 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/card" element={<Cards />} />
+            <Route path="/cardlist" element={<Cards />} />
             <Route path="/connection" element={<Connection />} />
             <Route path="/inscription" element={<Inscription />} />
             <Route element={<Authorized />}>
               <Route path="/profil" element={<Profil />} />
-              <Route path="/cardlist" element={<Cards />} />
               <Route path="/mydecks" element={<CreateDeck />} />
             </Route>
           </Routes>

@@ -1,7 +1,7 @@
 @import '../../Global.scss';
 
 .header {
-  background-color: $colorGreen;
+  background-color: $colorBlack;
   height: $heightHeader;
   display: flex;
   flex-direction: column;
@@ -13,16 +13,22 @@
     justify-content: space-around;
     align-items: center;
 
-    button {
-      height: 30%;
-    }
-    .image-logo {
-      height: 100%;
-      a {
-        img {
-          width: auto;
-          height: 80%;
-        }
+    a {
+      height: 90%;
+
+      button {
+        height: 100%;
+        width: 10vw;
+        background-color: black;
+        border: none;
+        border-radius: 20px;
+        color: white;
+        font-size: large;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button:hover {
+        background: rgba(210, 207, 207, 0.226);
       }
     }
   }

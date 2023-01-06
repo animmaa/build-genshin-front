@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../../../context/loginProvider';
+import './Connection.scss';
 
 function Connection() {
   const { setUser } = useLogin();
@@ -33,35 +34,44 @@ function Connection() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="pseudo">
-          Pseudo
-          <input
-            type="text"
-            id="pseudo"
-            {...register('pseudo', { required: true })}
-          />
-          {errors.pseudo && errors.pseudo.type === 'required' && (
-            <span>This is required</span>
-          )}
-        </label>
-        <br />
-        <label htmlFor="password">
-          Password
-          <input
-            type="text"
-            id="password"
-            {...register('password', { required: true })}
-          />
-          {errors.password && errors.password.type === 'required' && (
-            <span>This is required</span>
-          )}
-        </label>
-        <br />
-        <h5>{error}</h5>
-        <input type="submit" value="connection" />
-      </form>
+    <div className="connexion">
+      <div className="cadre-connexion">
+        <h1>Connexion</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="cadre-label">
+            <label htmlFor="pseudo">
+              <input
+                type="text"
+                placeholder="Pseudo"
+                id="pseudo"
+                {...register('pseudo', { required: true })}
+              />
+              {errors.pseudo && errors.pseudo.type === 'required' && (
+                <span>This is required</span>
+              )}
+            </label>
+            <label htmlFor="password">
+              <input
+                placeholder="Mot de passe"
+                type="password"
+                id="password"
+                {...register('password', { required: true })}
+              />
+              {errors.password && errors.password.type === 'required' && (
+                <span>This is required</span>
+              )}
+            </label>
+          </div>
+          <h5>{error}</h5>
+          <button type="submit">Connection</button>
+        </form>
+        <div className="direction-inscription">
+          <h4>
+            Pas encore inscrit&nbsp;&rarr;&nbsp;
+            <a href="/inscription">Créer un compte</a>
+          </h4>
+        </div>
+      </div>
     </div>
   );
 }

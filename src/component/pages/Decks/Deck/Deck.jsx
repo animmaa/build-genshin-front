@@ -13,7 +13,7 @@ function Deck({ deckName, idDeck }) {
 
   const handleChoice = () => {
     setChoiceDeck(idDeck);
-    navigate('/card');
+    navigate('/cardlist');
   };
 
   return (

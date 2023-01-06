@@ -6,11 +6,11 @@
 
   .grid_cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     background-color: aqua;
     .test {
       padding: 10px 3vw;
-      width: 40vw;
+      width: 6rem;
     }
     img {
       width: 90%;

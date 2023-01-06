@@ -37,11 +37,7 @@ function CardsListLog() {
 
   const getCardsList = async () => {
     await axios
-      .get(`http://localhost:8000/api/card/${triCarte}`, {
-        headers: {
-          authorization: `${user.token}`,
-        },
-      })
+      .get(`http://localhost:8000/api/card/${triCarte}`)
       .then((response) => {
         setCardList(response.data);
       })

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Inscription.scss';
 
 function Inscription() {
   const [error, setError] = useState('');
@@ -26,32 +27,47 @@ function Inscription() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="pseudo">
-          Pseudo
-          <input
-            id="pseudo"
-            {...register('pseudo', { required: true, maxLength: 30 })}
-          />
-          {errors.pseudo && errors.pseudo.type === 'required' && (
-            <span>This is required</span>
-          )}
-          {errors.pseudo && errors.pseudo.type === 'maxLength' && (
-            <span>Max length exceeded</span>
-          )}
-          <br />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input {...register('password', { required: true })} id="password" />
-          {errors.password && errors.password.type === 'required' && (
-            <span>This is required</span>
-          )}
-        </label>
-        <h5>{error}</h5>
-        <input type="submit" value="Creer compte" />
-      </form>
+    <div className="inscription">
+      <div className="cadre-inscription">
+        <h1>Bienvenue</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="cadre-label">
+            <label htmlFor="pseudo">
+              <input
+                id="pseudo"
+                placeholder="Pseudo"
+                {...register('pseudo', { required: true, maxLength: 30 })}
+              />
+              {errors.pseudo && errors.pseudo.type === 'required' && (
+                <span>This is required</span>
+              )}
+              {errors.pseudo && errors.pseudo.type === 'maxLength' && (
+                <span>Max length exceeded</span>
+              )}
+              <br />
+            </label>
+            <label htmlFor="password">
+              <input
+                {...register('password', { required: true })}
+                placeholder="Mot de passe"
+                type="password"
+                id="password"
+              />
+              {errors.password && errors.password.type === 'required' && (
+                <span>This is required</span>
+              )}
+            </label>
+          </div>
+          <h5>{error}</h5>
+          <button type="submit">Créer ton compte</button>
+        </form>
+        <div className="direction-connection">
+          <h4>
+            Déjà un compte&nbsp;&rarr;&nbsp;
+            <a href="/connection">Connection</a>
+          </h4>
+        </div>
+      </div>
     </div>
   );
 }
