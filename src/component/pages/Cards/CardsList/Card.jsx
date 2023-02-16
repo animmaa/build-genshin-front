@@ -13,7 +13,6 @@ function Card({
 }) {
   const { choiceDeck } = useLogin();
   const [numberCard, setNumberCard] = useState();
-  // console.log(choiceDeck);
   const [disableNegative, setDisableNegative] = useState();
   const [disablePositif, setDisablePositif] = useState();
 
@@ -29,7 +28,6 @@ function Card({
   };
 
   const addCardInTheDeck = async () => {
-    // console.log(idCard, 'ajout');
     await axios
       .post(
         `http://localhost:8000/api/card/addcardindeck/${choiceDeck}/${idCard}`,
@@ -39,7 +37,6 @@ function Card({
       )
       .then(() => {
         getNumberCardInTheDeck();
-        console.log(`ajout de la carte ${idCard} du deck ${choiceDeck}`);
       })
       .catch((err) => console.log(err));
   };
@@ -57,15 +54,15 @@ function Card({
   };
 
   useEffect(() => {
-    if (numberCard !== 0) {
-      setDisableNegative(false);
-    } else {
-      setDisableNegative(true);
-    }
-    if (numberCard !== 3) {
-      setDisablePositif(false);
-    } else {
+    if (numberCard === 3) {
       setDisablePositif(true);
+    } else {
+      setDisablePositif(false);
+    }
+    if (numberCard === 0) {
+      setDisableNegative(true);
+    } else {
+      setDisableNegative(false);
     }
     getNumberCardInTheDeck();
     getPersonnageNumberCardInTheDeck();
@@ -90,9 +87,9 @@ function Card({
             -
           </button>
           <div>
-            {' '}
+            &nbsp;
             {numberCard}
-            {' '}
+            &nbsp;
           </div>
           <button
             type="button"

@@ -1,13 +1,39 @@
+@import '../../../../Global.scss';
+
 .cards_list_log {
   padding: 0 5vw;
+
+  .select_type_cards {
+    display: flex;
+    justify-content: space-around;
+
+    .button {
+      @extend %blocButton;
+      background-color: white;
+      color: black;
+    }
+    .is_button {
+      @extend %blocButton;
+      background-color: black;
+      color: white;
+    }
+    .button:hover {
+      background-color: rgb(115, 114, 114);
+      color: white;
+    }
+  }
+
   h3 {
     margin: 0;
+    padding: 20px 0;
   }
 
   .grid_cards {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    background-color: aqua;
+    padding-top: 5vh;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-auto-columns: 1fr;
+    //background-color: aqua;
     .test {
       padding: 10px 3vw;
       width: 6rem;

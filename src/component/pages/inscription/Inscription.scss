@@ -79,7 +79,8 @@
       }
 
       button:hover {
-        background-color: lightgreen;
+        background-color: $colorBackgroundButton;
+        color: white;
       }
     }
   }

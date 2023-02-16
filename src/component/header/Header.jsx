@@ -14,28 +14,31 @@ function Header() {
     <div className="header">
       {user ? (
         <div className="align-text">
-          <a href="/Connection">
-            <button type="button" onClick={handleDeleteLocalStorage}>
-              deconnection
-            </button>
+          <a href="/profil">
+            <button type="button">Mon profil</button>
+          </a>
+          <a href="/mydecks">
+            <button type="button">Mes decks</button>
           </a>
           <a href="/cardlist">
             <button type="button">Liste des cartes</button>
           </a>
-          <a href="/profil">
-            <h4>{user.pseudo}</h4>
+          <a href="/Connection">
+            <button type="button" onClick={handleDeleteLocalStorage}>
+              Deconnexion
+            </button>
           </a>
         </div>
       ) : (
         <div className="align-text">
-          <a href="/Connection">
-            <button type="button">Connection</button>
+          <a href="/inscription">
+            <button type="button">Inscription</button>
           </a>
           <a href="/cardlist">
             <button type="button">Liste des cartes</button>
           </a>
-          <a href="/inscription">
-            <button type="button">Inscription</button>
+          <a href="/Connection">
+            <button type="button">Connexion</button>
           </a>
         </div>
       )}

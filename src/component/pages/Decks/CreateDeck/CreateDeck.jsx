@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useLogin } from '../../../../context/loginProvider';
 import Deck from '../Deck/Deck';
+import './CreateDeck.scss';
 
 function CreateDeck() {
   const [nameNewDeck, setNameNewDeck] = useState();
@@ -27,7 +28,7 @@ function CreateDeck() {
   }, []);
 
   return (
-    <div>
+    <div className="createDeck">
       <div>
         <label htmlFor="nameDeck">
           Nom du deck

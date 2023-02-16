@@ -6,7 +6,7 @@ import { useLogin } from '../../../../context/loginProvider';
 import './CardsListLog.scss';
 
 function CardsListLog() {
-  const { user, choiceDeck } = useLogin();
+  const { choiceDeck } = useLogin();
   const [cardList, setCardList] = useState([]);
   const navigator = useNavigate();
   const [triCarte, setTriCarte] = useState('personnage');
@@ -55,28 +55,50 @@ function CardsListLog() {
       <div>
         <h3>Liste des cartes</h3>
       </div>
-      <div>
-        <button type="button" onClick={() => setTriCarte('personnage')}>
+      <div className="select_type_cards">
+        <button
+          className={triCarte === 'personnage' ? 'is_button' : 'button'}
+          type="button"
+          onClick={() => setTriCarte('personnage')}
+        >
           Cartes personnages
         </button>
-        <button type="button" onClick={() => setTriCarte('event')}>
+        <button
+          className={triCarte === 'event' ? 'is_button' : 'button'}
+          type="button"
+          onClick={() => setTriCarte('event')}
+        >
           Cartes évènement
         </button>
-        <button type="button" onClick={() => setTriCarte('equipement')}>
+        <button
+          className={triCarte === 'equipement' ? 'is_button' : 'button'}
+          type="button"
+          onClick={() => setTriCarte('equipement')}
+        >
           Cartes équipement
         </button>
-        <button type="button" onClick={() => setTriCarte('support')}>
+        <button
+          className={triCarte === 'support' ? 'is_button' : 'button'}
+          type="button"
+          onClick={() => setTriCarte('support')}
+        >
           Cartes support
         </button>
       </div>
-      <h4>
-        Nombre carte personnage
-        {nomberPersonnage}
-      </h4>
-      <h4>
-        Nombre carte dans le deck
-        {nomberCardInTheDeck}
-      </h4>
+      {choiceDeck ? (
+        <>
+          <h4>
+            Nombre carte personnage &#129;
+            {nomberPersonnage}
+            &#129; / 3
+          </h4>
+          <h4>
+            Nombre carte dans le deck &#129;
+            {nomberCardInTheDeck}
+            &#129; / 30
+          </h4>
+        </>
+      ) : null}
       <div className="grid_cards">
         {cardList.map((el) => (
           <div className="test" key={el.id}>
@@ -98,9 +120,5 @@ function CardsListLog() {
     </div>
   );
 }
-
-// CardsListLog.propTypes = {
-//   children: PropTypes.element.isRequired,
-// };
 
 export default CardsListLog;

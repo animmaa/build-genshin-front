@@ -6,9 +6,7 @@ import './Deck.scss';
 
 function Deck({ deckName, idDeck }) {
   const { setChoiceDeck } = useLogin();
-  // clique sur le boutton modif deck pour pouvoir mettre des carte dedans
-  // recuperer id du deck
-  // afficher les cartes
+
   const navigate = useNavigate();
 
   const handleChoice = () => {
@@ -18,10 +16,9 @@ function Deck({ deckName, idDeck }) {
 
   return (
     <div className="deck_base">
-      <h4>{deckName}</h4>
-      <br />
-      <br />
-      <div>futur image du deck</div>
+      <div className="card_deck">
+        <h4>{deckName}</h4>
+      </div>
       <button type="button" onClick={handleChoice}>
         modifier deck
       </button>

@@ -9,9 +9,6 @@ function Profil() {
         <a href="mydecks">
           <button type="button">Mes decks</button>
         </a>
-        <a href="cardlist">
-          <button type="button">liste cartes</button>
-        </a>
         <a href="profildetails">
           <button type="button">Profil</button>
         </a>
