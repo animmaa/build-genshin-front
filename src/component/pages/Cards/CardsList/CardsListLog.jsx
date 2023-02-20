@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import Card from './Card';
 import { useLogin } from '../../../../context/loginProvider';
 import './CardsListLog.scss';
+import {
+  getNumberTotalInTheDeck,
+  getPersonnageNumberInTheDeck,
+} from '../../../../utils/requetes';
 
 function CardsListLog() {
   const { choiceDeck } = useLogin();
@@ -15,23 +19,15 @@ function CardsListLog() {
 
   const getPersonnageNumberCardInTheDeck = async () => {
     if (choiceDeck) {
-      await axios
-        .get(`http://localhost:8000/api/deck/totalpersonnage/${choiceDeck}`)
-        .then((response) => {
-          setNomberPersonnage(response.data.numberPersonnageCard);
-        })
-        .catch((err) => console.log(err));
+      const response = await getPersonnageNumberInTheDeck(choiceDeck);
+      setNomberPersonnage(response.data.numberPersonnageCard);
     }
   };
 
   const getNumberTotalCardInTheDeck = async () => {
     if (choiceDeck) {
-      await axios
-        .get(`http://localhost:8000/api/deck/totalcard/${choiceDeck}`)
-        .then((response) => {
-          setNomberCardInTheDeck(response.data.numberCard);
-        })
-        .catch((err) => console.log(err));
+      const response = await getNumberTotalInTheDeck(choiceDeck);
+      setNomberCardInTheDeck(response.data.numberCard);
     }
   };
 
@@ -101,7 +97,7 @@ function CardsListLog() {
       ) : null}
       <div className="grid_cards">
         {cardList.map((el) => (
-          <div className="test" key={el.id}>
+          <div className="zone_card" key={el.id}>
             <div>
               <img src={el.url} alt="" />
             </div>

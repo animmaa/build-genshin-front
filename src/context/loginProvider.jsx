@@ -11,6 +11,7 @@ const LoginContext = createContext(null);
 
 function LoginProvider({ children }) {
   const [choiceDeck, setChoiceDeck] = useState();
+  const [idDeck, setIdDeck] = useState();
   const [user, setUser] = useState(
     localStorage.getItem('user')
       ? JSON.parse(localStorage.getItem('user'))
@@ -31,8 +32,10 @@ function LoginProvider({ children }) {
       setUser,
       choiceDeck,
       setChoiceDeck,
+      idDeck,
+      setIdDeck,
     }),
-    [user, choiceDeck],
+    [user, choiceDeck, idDeck],
   );
 
   return (

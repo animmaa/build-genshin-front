@@ -23,6 +23,9 @@ function Header() {
           <a href="/cardlist">
             <button type="button">Liste des cartes</button>
           </a>
+          <a href="/deckuser">
+            <button type="button">Liste deck user</button>
+          </a>
           <a href="/Connection">
             <button type="button" onClick={handleDeleteLocalStorage}>
               Deconnexion
