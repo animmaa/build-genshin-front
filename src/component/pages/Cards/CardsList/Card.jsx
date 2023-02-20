@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useLogin } from '../../../../context/loginProvider';
+import { addCard, deleteCard, getNumberCard } from '../../../../utils/requetes';
 import './Card.scss';
 
 function Card({
@@ -18,39 +18,19 @@ function Card({
 
   const getNumberCardInTheDeck = async () => {
     if (choiceDeck) {
-      await axios
-        .get(`http://localhost:8000/api/deck/number/${idCard}/${choiceDeck}`)
-        .then((response) => {
-          setNumberCard(response.data.numberCard);
-        })
-        .catch((err) => console.log(err));
+      const response = await getNumberCard(choiceDeck, idCard);
+      setNumberCard(response.data.numberCard);
     }
   };
 
   const addCardInTheDeck = async () => {
-    await axios
-      .post(
-        `http://localhost:8000/api/card/addcardindeck/${choiceDeck}/${idCard}`,
-        {
-          card_id: idCard,
-        },
-      )
-      .then(() => {
-        getNumberCardInTheDeck();
-      })
-      .catch((err) => console.log(err));
+    await addCard(choiceDeck, idCard);
+    await getNumberCardInTheDeck(choiceDeck, setNumberCard, idCard);
   };
 
   const deleteCardInTheDeck = async () => {
-    await axios
-      .delete(
-        `http://localhost:8000/api/card/deletecardindeck/${choiceDeck}/${idCard}`,
-      )
-      .then(() => {
-        getNumberCardInTheDeck();
-        console.log(`suppression de la carte ${idCard} du deck ${choiceDeck}`);
-      })
-      .catch((err) => console.log(err));
+    await deleteCard(choiceDeck, idCard);
+    await getNumberCardInTheDeck(choiceDeck, setNumberCard, idCard);
   };
 
   useEffect(() => {
@@ -67,8 +47,6 @@ function Card({
     getNumberCardInTheDeck();
     getPersonnageNumberCardInTheDeck();
     getNumberTotalCardInTheDeck();
-
-    console.log('test useeffect');
   }, [numberCard]);
 
   return (
