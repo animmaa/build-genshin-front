@@ -5,7 +5,7 @@ import Deck from '../Deck/Deck';
 import './CreateDeck.scss';
 
 function CreateDeck() {
-  const [nameNewDeck, setNameNewDeck] = useState();
+  const [nameNewDeck, setNameNewDeck] = useState('New Deck');
   const {
     user: { id },
   } = useLogin();
@@ -23,35 +23,46 @@ function CreateDeck() {
     });
     getDeck();
   };
+
   useEffect(() => {
     getDeck();
   }, []);
 
   return (
     <div className="createDeck">
-      <div>
-        <label htmlFor="nameDeck">
-          Nom du deck
-          <input
-            type="text"
-            id="nameDeck"
-            onChange={(event) => setNameNewDeck(event.target.value)}
-          />
-        </label>
-        <input
-          type="submit"
-          value="creer deck"
-          onClick={() => addDeck(nameNewDeck)}
-        />
-      </div>
       <br />
       <br />
       <div className="grid_deck">
         {decks.map((deck) => (
-          <div className="deck">
-            <Deck deckName={deck.namedeck} idDeck={deck.id} />
+          <div className="deck" key={deck.id}>
+            <Deck
+              deckName={deck.namedeck}
+              idDeck={deck.id}
+              deckImage={deck.imgdeckone}
+              getDeck={getDeck}
+            />
           </div>
         ))}
+        <div className="blanckDeck">
+          <img
+            src="https://s3.us-east-1.amazonaws.com/gamewith-en/article_tools/genshin-impact/gacha/card_i_85.png"
+            alt="imagebase"
+          />
+
+          <label htmlFor="nameDeck">
+            <input
+              value={nameNewDeck}
+              type="text"
+              id="nameDeck"
+              onChange={(event) => setNameNewDeck(event.target.value)}
+            />
+          </label>
+          <input
+            type="submit"
+            value="creer deck"
+            onClick={() => addDeck(nameNewDeck)}
+          />
+        </div>
       </div>
     </div>
   );

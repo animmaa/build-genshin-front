@@ -6,4 +6,24 @@
     flex-wrap: wrap;
     padding-top: 5vh;
   }
+  .blanckDeck {
+    height: 18rem;
+    padding: 15px 3vw;
+    width: 10rem;
+   // background-color: green;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+align-items: center;
+    img {
+     // padding: 0 1em;
+      height: 12rem;
+      opacity: 0.3;
+    }
+
+      input {
+        width: 100px;
+      }
+
+  }
 }
