@@ -15,9 +15,13 @@ function Deck({ deckName, idDeck, deckImage, getDeck }) {
     getDeck();
   };
 
-  const handleChoice = () => {
+  const handleChoiceAddCards = () => {
     setChoiceDeck(idDeck);
     navigate('/cardlist');
+  };
+  const handleChoiceModifDeck = () => {
+    setChoiceDeck(idDeck);
+    navigate('/modifdeck');
   };
 
   return (
@@ -28,11 +32,14 @@ function Deck({ deckName, idDeck, deckImage, getDeck }) {
         <img src={deckImage} alt="" />
         <img className="testimage" src={deckImage} alt="" />
       </div>
-      <button type="button" onClick={handleChoice}>
-        modifier deck
+      <button type="button" onClick={handleChoiceAddCards}>
+        ajout carte
       </button>
       <button type="button" onClick={handleDeleteDeck}>
         supprimer deck
+      </button>
+      <button type="button" onClick={handleChoiceModifDeck}>
+        modif deck
       </button>
     </div>
   );
