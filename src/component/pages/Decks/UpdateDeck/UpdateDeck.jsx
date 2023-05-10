@@ -34,14 +34,15 @@ const UpdateDeck = () => {
         navigator('/');
       });
   };
-
+  const keyArray = ['imgdeckthree', 'imgdecktwo', 'imgdeckone'];
   const handleChoiceImage = (urlCard) => {
-    if (urlImage.imgdeckone === imageBase) {
-      setUrlImage({ ...urlImage, imgdeckone: urlCard.url });
-    } else if (urlImage.imgdecktwo === imageBase) {
-      setUrlImage({ ...urlImage, imgdecktwo: urlCard.url });
-    } else if (urlImage.imgdeckthree === imageBase) {
-      setUrlImage({ ...urlImage, imgdeckthree: urlCard.url });
+    for (const element of keyArray) {
+      if (urlImage[element] === imageBase) {
+        setUrlImage({ ...urlImage, [element]: urlCard.url });
+      } 
+      if (urlImage[element] === urlCard.url) {
+        setUrlImage({ ...urlImage, [element]: imageBase });
+      }
     }
   };
 
@@ -59,16 +60,39 @@ const UpdateDeck = () => {
       <div>
         <h1>liste carte</h1>
       </div>
-      <div>
-        <input
-          type="text"
-          name="namedeck"
-          value={urlImage.namedeck}
-          onChange={handleChangeName}
-        />
-        <input type="text" name="imgdeckone" value={urlImage.imgdeckone} />
-        <input type="text" name="imgdecktwo" value={urlImage.imgdecktwo} />
-        <input type="text" name="imgdeckthree" value={urlImage.imgdeckthree} />
+      <div className="card_deck">
+        <div>
+          <input
+            type="text"
+            name="namedeck"
+            value={urlImage.namedeck}
+            onChange={handleChangeName}
+          />
+        </div>
+        <div className="image1 size_image">
+          <input
+            type="image"
+            name="imgdeckone"
+            value={urlImage.imgdeckone}
+            src={urlImage.imgdeckone}
+          />
+        </div>
+        <div className="size_image">
+          <input
+            type="image"
+            name="imgdecktwo"
+            value={urlImage.imgdecktwo}
+            src={urlImage.imgdecktwo}
+          />
+        </div>
+        <div className="image3 size_image">
+          <input
+            type="image"
+            name="imgdeckthree"
+            value={urlImage.imgdeckthree}
+            src={urlImage.imgdeckthree}
+          />
+        </div>
       </div>
       <div className="zone_card">
         {listCard.map((el) => (

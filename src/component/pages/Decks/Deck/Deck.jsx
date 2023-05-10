@@ -35,9 +35,9 @@ function Deck({
     <div className="deck_base">
       <div className="card_deck">
         <h4>{deckName}</h4>
-        <img className="testimage2" src={deckImageOne} alt="" />
+        <img className="image1" src={deckImageOne} alt="" />
         <img src={deckImageTwo} alt="" />
-        <img className="testimage" src={deckImageThree} alt="" />
+        <img className="image3" src={deckImageThree} alt="" />
       </div>
       <button type="button" onClick={handleChoiceAddCards}>
         ajout carte
