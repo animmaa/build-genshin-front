@@ -38,7 +38,9 @@ function CreateDeck() {
             <Deck
               deckName={deck.namedeck}
               idDeck={deck.id}
-              deckImage={deck.imgdeckone}
+              deckImageOne={deck.imgdeckone}
+              deckImageTwo={deck.imgdecktwo}
+              deckImageThree={deck.imgdeckthree}
               getDeck={getDeck}
             />
           </div>
