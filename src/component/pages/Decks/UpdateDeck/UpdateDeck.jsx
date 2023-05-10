@@ -6,22 +6,17 @@ import { useLogin } from '../../../../context/loginProvider';
 const UpdateDeck = () => {
   const { setChoiceDeck, choiceDeck } = useLogin();
   console.log(choiceDeck);
-  const [urlImage, setUrlImage] = useState({
-    // namedeck: '',
-    // imgdeckone: '',
-    // imgdecktwo: '',
-    // imgdeckthree: ''
-
-    namedeck: 'change name',
-    imgdeckone:
-      'https://s3.us-east-1.amazonaws.com/gamewith-en/article_tools/genshin-impact/gacha/card_i_53.png',
-    imgdecktwo:
-      'https://s3.us-east-1.amazonaws.com/gamewith-en/article_tools/genshin-impact/gacha/card_i_11.png',
-    imgdeckthree:
-      'https://s3.us-east-1.amazonaws.com/gamewith-en/article_tools/genshin-impact/gacha/card_i_12.png',
-  });
+  const [urlImage, setUrlImage] = useState({});
   const [listCard, setListCard] = useState([]);
+  const imageBase =
+    'https://s3.us-east-1.amazonaws.com/gamewith-en/article_tools/genshin-impact/gacha/card_i_85.png';
 
+  const getInfosDeck = async () => {
+    await axios
+      .get(`http://localhost:8000/api/deck/infosdeck/${choiceDeck}`)
+      .then((response) => setUrlImage(response.data));
+  };
+  console.log(urlImage);
   const update = async () => {
     await axios.put(
       `http://localhost:8000/api/deck/updatedeck/${choiceDeck}`,
@@ -41,15 +36,22 @@ const UpdateDeck = () => {
   };
 
   const handleChoiceImage = (urlCard) => {
-    setUrlImage({ ...urlImage, imgdeckone: urlCard.url });
+    if (urlImage.imgdeckone === imageBase) {
+      setUrlImage({ ...urlImage, imgdeckone: urlCard.url });
+    } else if (urlImage.imgdecktwo === imageBase) {
+      setUrlImage({ ...urlImage, imgdecktwo: urlCard.url });
+    } else if (urlImage.imgdeckthree === imageBase) {
+      setUrlImage({ ...urlImage, imgdeckthree: urlCard.url });
+    }
   };
 
   const handleChangeName = (e) => {
-    setUrlImage({...urlImage, [e.target.name]: e.target.value})
-  }
+    setUrlImage({ ...urlImage, [e.target.name]: e.target.value });
+  };
 
   useEffect(() => {
     getCardsList();
+    getInfosDeck();
   }, []);
 
   return (
@@ -58,10 +60,15 @@ const UpdateDeck = () => {
         <h1>liste carte</h1>
       </div>
       <div>
-        <input type="text" name="namedeck" value={urlImage.namedeck} onChange={handleChangeName}/>
-        <input type="text" name="imgdeckone" value={urlImage.imgdeckone}/>
-        <input type="text" name="imgdecktwo" value={urlImage.imgdecktwo}/>
-        <input type="text" name="imgdeckthree" value={urlImage.imgdeckthree}/>
+        <input
+          type="text"
+          name="namedeck"
+          value={urlImage.namedeck}
+          onChange={handleChangeName}
+        />
+        <input type="text" name="imgdeckone" value={urlImage.imgdeckone} />
+        <input type="text" name="imgdecktwo" value={urlImage.imgdecktwo} />
+        <input type="text" name="imgdeckthree" value={urlImage.imgdeckthree} />
       </div>
       <div className="zone_card">
         {listCard.map((el) => (
