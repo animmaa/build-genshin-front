@@ -39,9 +39,11 @@ const UpdateDeck = () => {
     for (const element of keyArray) {
       if (urlImage[element] === imageBase) {
         setUrlImage({ ...urlImage, [element]: urlCard.url });
-      } 
-      if (urlImage[element] === urlCard.url) {
-        setUrlImage({ ...urlImage, [element]: imageBase });
+      }
+    }
+    for (const test of keyArray) {
+      if (urlImage[test] === urlCard.url) {
+        setUrlImage({ ...urlImage, [test]: imageBase });
       }
     }
   };
@@ -61,7 +63,8 @@ const UpdateDeck = () => {
         <h1>liste carte</h1>
       </div>
       <div className="card_deck">
-        <div>
+        <div className="deck_name">
+          <label htmlFor="">Nom du deck :</label>
           <input
             type="text"
             name="namedeck"
@@ -69,29 +72,33 @@ const UpdateDeck = () => {
             onChange={handleChangeName}
           />
         </div>
-        <div className="image1 size_image">
-          <input
-            type="image"
-            name="imgdeckone"
-            value={urlImage.imgdeckone}
-            src={urlImage.imgdeckone}
-          />
-        </div>
-        <div className="size_image">
-          <input
-            type="image"
-            name="imgdecktwo"
-            value={urlImage.imgdecktwo}
-            src={urlImage.imgdecktwo}
-          />
-        </div>
-        <div className="image3 size_image">
-          <input
-            type="image"
-            name="imgdeckthree"
-            value={urlImage.imgdeckthree}
-            src={urlImage.imgdeckthree}
-          />
+        <div className="test">
+          <div className="test2">
+            <div className="image1 size_image">
+              <input
+                type="image"
+                name="imgdeckone"
+                value={urlImage.imgdeckone}
+                src={urlImage.imgdeckone}
+              />
+            </div>
+            <div className="size_image">
+              <input
+                type="image"
+                name="imgdecktwo"
+                value={urlImage.imgdecktwo}
+                src={urlImage.imgdecktwo}
+              />
+            </div>
+            <div className="image3 size_image">
+              <input
+                type="image"
+                name="imgdeckthree"
+                value={urlImage.imgdeckthree}
+                src={urlImage.imgdeckthree}
+              />
+            </div>
+          </div>
         </div>
       </div>
       <div className="zone_card">
