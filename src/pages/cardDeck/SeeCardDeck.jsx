@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLogin } from '../../../../context/loginProvider';
-import DetailCard from './DetailCard';
+import { useLogin } from '../../context/loginProvider';
+import DetailCard from '../../component/Decks/allDeck/DetailCard';
 import './SeeCardDeck.scss';
 
 function SeeCardDeck() {

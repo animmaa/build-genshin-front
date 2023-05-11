@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import DescDeck from './DescDeck';
+import DescDeck from '../../component/Decks/allDeck/DescDeck';
 
 function AllDeck() {
   const [allDeck, setAllDeck] = useState([]);

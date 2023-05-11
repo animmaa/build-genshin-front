@@ -1,6 +1,6 @@
 import './Cards.scss';
 import React from 'react';
-import CardsListLog from './CardsList/CardsListLog';
+import CardsListLog from '../../component/cards/cardListUserLog/CardsListLog';
 
 function Cards() {
   return (
