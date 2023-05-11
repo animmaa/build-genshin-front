@@ -8,46 +8,58 @@
       padding: 5px;
     }
   }
-}
-.card_deck {
-  display: flex;
-
-  align-items: center;
-  font-size: large;
-  height: 22rem;
-  .test {
-    width: 50%;
-    height: 20rem;
+  .card_deck {
     display: flex;
-    justify-content: center;
     align-items: center;
-    .test2 {
+    font-size: large;
+    height: 22rem;
+
+    .container-card {
       width: 50%;
-      height: 50%;
-    }
-  }
-  .deck_name {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    input {
-      margin-top: 1rem;
-    }
-  }
+      height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-  .image1 {
-    transform: rotate(-25deg) translateX(-40px) translateY(-10px);
-  }
-  .image3 {
-    transform: rotate(25deg) translateX(40px);
-  }
-  input[type='image'] {
-    height: 12rem;
-    cursor: default;
-  }
+      .container_input_image {
+        width: 50%;
+        height: 50%;
+      }
+    }
+    .deck_name {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-  .size_image {
-    position: absolute;
+      label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      button {
+        width: 6rem;
+        height: 3rem;
+        margin-top: 2rem;
+      }
+    }
+
+    .image1 {
+      transform: rotate(-25deg) translateX(-40px) translateY(-10px);
+    }
+
+    .image3 {
+      transform: rotate(25deg) translateX(40px);
+    }
+
+    input[type='image'] {
+      height: 12rem;
+      cursor: default;
+    }
+
+    .size_image {
+      position: absolute;
+    }
   }
 }

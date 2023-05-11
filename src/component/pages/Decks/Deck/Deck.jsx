@@ -55,7 +55,9 @@ function Deck({
 Deck.propTypes = {
   deckName: PropTypes.string.isRequired,
   idDeck: PropTypes.number.isRequired,
-  deckImage: PropTypes.string.isRequired,
+  deckImageOne: PropTypes.string.isRequired,
+  deckImageTwo: PropTypes.string.isRequired,
+  deckImageThree: PropTypes.string.isRequired,
   getDeck: PropTypes.func.isRequired,
 };
 

@@ -1,32 +1,33 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import './UpdateDeck.scss';
+import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../../../../context/loginProvider';
+import './UpdateDeck.scss';
 
-const UpdateDeck = () => {
-  const { setChoiceDeck, choiceDeck } = useLogin();
-  console.log(choiceDeck);
+function UpdateDeck() {
+  const { choiceDeck } = useLogin();
   const [urlImage, setUrlImage] = useState({});
   const [listCard, setListCard] = useState([]);
-  const imageBase =
-    'https://s3.us-east-1.amazonaws.com/gamewith-en/article_tools/genshin-impact/gacha/card_i_85.png';
+  const navigate = useNavigate();
+  const imageBase = 'https://s3.us-east-1.amazonaws.com/gamewith-en/article_tools/genshin-impact/gacha/card_i_85.png';
 
   const getInfosDeck = async () => {
     await axios
       .get(`http://localhost:8000/api/deck/infosdeck/${choiceDeck}`)
       .then((response) => setUrlImage(response.data));
   };
-  console.log(urlImage);
+
   const update = async () => {
     await axios.put(
       `http://localhost:8000/api/deck/updatedeck/${choiceDeck}`,
-      urlImage
+      urlImage,
     );
+    navigate('/mydecks');
   };
 
   const getCardsList = async () => {
     await axios
-      .get(`http://localhost:8000/api/card/personnage`)
+      .get('http://localhost:8000/api/card/personnage')
       .then((response) => {
         setListCard(response.data);
       })
@@ -64,22 +65,29 @@ const UpdateDeck = () => {
       </div>
       <div className="card_deck">
         <div className="deck_name">
-          <label htmlFor="">Nom du deck :</label>
-          <input
-            type="text"
-            name="namedeck"
-            value={urlImage.namedeck}
-            onChange={handleChangeName}
-          />
+          <label htmlFor="name-deck" className="name_deck">
+            <h4>Nom du deck :</h4>
+            <input
+              id="name-deck"
+              type="text"
+              name="namedeck"
+              value={urlImage.namedeck}
+              onChange={handleChangeName}
+            />
+          </label>
+          <button type="button" onClick={update}>
+            valider changement
+          </button>
         </div>
-        <div className="test">
-          <div className="test2">
+        <div className="container-card">
+          <div className="container_input_image">
             <div className="image1 size_image">
               <input
                 type="image"
                 name="imgdeckone"
                 value={urlImage.imgdeckone}
                 src={urlImage.imgdeckone}
+                alt="image1"
               />
             </div>
             <div className="size_image">
@@ -88,6 +96,7 @@ const UpdateDeck = () => {
                 name="imgdecktwo"
                 value={urlImage.imgdecktwo}
                 src={urlImage.imgdecktwo}
+                alt="image2"
               />
             </div>
             <div className="image3 size_image">
@@ -96,6 +105,7 @@ const UpdateDeck = () => {
                 name="imgdeckthree"
                 value={urlImage.imgdeckthree}
                 src={urlImage.imgdeckthree}
+                alt="image3"
               />
             </div>
           </div>
@@ -104,13 +114,18 @@ const UpdateDeck = () => {
       <div className="zone_card">
         {listCard.map((el) => (
           <div key={el.id}>
-            <img onClick={() => handleChoiceImage(el)} src={el.url} alt="" />
+            <img
+              role="presentation"
+              onKeyDown={() => handleChoiceImage(el)}
+              onClick={() => handleChoiceImage(el)}
+              src={el.url}
+              alt="imageCard"
+            />
           </div>
         ))}
       </div>
-      <button onClick={update}>valider</button>
     </div>
   );
-};
+}
 
 export default UpdateDeck;
