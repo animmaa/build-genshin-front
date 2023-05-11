@@ -12,6 +12,7 @@ import Authorized from './component/authorized/Authorized';
 import AllDeck from './component/pages/Decks/allDeck/AllDeck';
 import './App.css';
 import SeeCardDeck from './component/pages/Decks/allDeck/SeeCardDeck';
+import UpdateDeck from './component/pages/Decks/UpdateDeck/UpdateDeck';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route element={<Authorized />}>
               <Route path="/profil" element={<Profil />} />
               <Route path="/mydecks" element={<CreateDeck />} />
+              <Route path="/modifdeck" element={<UpdateDeck />} />
             </Route>
           </Routes>
         </Router>
