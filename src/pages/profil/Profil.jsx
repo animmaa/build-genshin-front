@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './Profil.scss';
 
 function Profil() {

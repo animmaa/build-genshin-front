@@ -1,11 +1,13 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Inscription.scss';
+import { useLogin } from '../../context/loginProvider';
+import './Connection.scss';
 
-function Inscription() {
-  const [error, setError] = useState('');
+function Connection() {
+  const { setUser } = useLogin();
+  const [error, setError] = useState(null);
   const {
     register,
     handleSubmit,
@@ -15,11 +17,16 @@ function Inscription() {
   const navigate = useNavigate();
 
   const onSubmit = async (values) => {
-    await axios
-      .post('http://localhost:8000/api/user/createuser', values)
-      .then(() => {
-        // console.log(data)
-        navigate('/connection');
+    axios
+      .post('http://localhost:8000/api/user/login', values)
+      .then(({ data }) => {
+        setUser({
+          token: data.credential,
+          pseudo: values.pseudo,
+          id: data.id,
+        });
+        localStorage.setItem('jwt', data.credential);
+        navigate('/profil');
       })
       .catch((err) => {
         setError(err.response.data.message);
@@ -27,31 +34,28 @@ function Inscription() {
   };
 
   return (
-    <div className="inscription">
-      <div className="cadre-inscription">
-        <h1>Bienvenue</h1>
+    <div className="connexion">
+      <div className="cadre-connexion">
+        <h1>Connexion</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="cadre-label">
             <label htmlFor="pseudo">
               <input
-                id="pseudo"
+                type="text"
                 placeholder="Pseudo"
-                {...register('pseudo', { required: true, maxLength: 30 })}
+                id="pseudo"
+                {...register('pseudo', { required: true })}
               />
               {errors.pseudo && errors.pseudo.type === 'required' && (
                 <span>This is required</span>
               )}
-              {errors.pseudo && errors.pseudo.type === 'maxLength' && (
-                <span>Max length exceeded</span>
-              )}
-              <br />
             </label>
             <label htmlFor="password">
               <input
-                {...register('password', { required: true })}
                 placeholder="Mot de passe"
                 type="password"
                 id="password"
+                {...register('password', { required: true })}
               />
               {errors.password && errors.password.type === 'required' && (
                 <span>This is required</span>
@@ -59,12 +63,12 @@ function Inscription() {
             </label>
           </div>
           <h5>{error}</h5>
-          <button type="submit">Créer ton compte</button>
+          <button type="submit">Connection</button>
         </form>
-        <div className="direction-connection">
+        <div className="direction-inscription">
           <h4>
-            Déjà un compte&nbsp;&rarr;&nbsp;
-            <a href="/connection">Connection</a>
+            Pas encore inscrit&nbsp;&rarr;&nbsp;
+            <a href="/inscription">Créer un compte</a>
           </h4>
         </div>
       </div>
@@ -72,4 +76,4 @@ function Inscription() {
   );
 }
 
-export default Inscription;
+export default Connection;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useLogin } from '../../../../context/loginProvider';
+import { useLogin } from '../../../context/loginProvider';
 
 function DescDeck({ deckName, idClick }) {
   const { setIdDeck } = useLogin();

@@ -1,18 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './component/header/Header';
-import HomePage from './component/homePage/HomePage';
-import Cards from './component/pages/Cards/Cards';
-import Inscription from './component/pages/inscription/Inscription';
-import Connection from './component/pages/connection/Connection';
+import HomePage from './pages/homePage/HomePage';
+import Cards from './pages/cards/Cards';
+import Inscription from './pages/inscription/Inscription';
 import LoginProvider from './context/loginProvider';
-import Profil from './component/pages/profil/Profil';
-import CreateDeck from './component/pages/Decks/CreateDeck/CreateDeck';
+import Profil from './pages/profil/Profil';
 import Authorized from './component/authorized/Authorized';
-import AllDeck from './component/pages/Decks/allDeck/AllDeck';
+import AllDeck from './pages/allDeck/AllDeck';
+import SeeCardDeck from './pages/cardDeck/SeeCardDeck';
+import Connection from './pages/connection/Connection';
+import CreateDeck from './pages/CreateDeck/CreateDeck';
+import UpdateDeck from './pages/UpdateDeck/UpdateDeck';
 import './App.css';
-import SeeCardDeck from './component/pages/Decks/allDeck/SeeCardDeck';
-import UpdateDeck from './component/pages/Decks/UpdateDeck/UpdateDeck';
 
 function App() {
   return (

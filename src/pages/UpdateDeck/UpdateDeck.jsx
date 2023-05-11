@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLogin } from '../../../../context/loginProvider';
+import { useLogin } from '../../context/loginProvider';
 import './UpdateDeck.scss';
 
 function UpdateDeck() {

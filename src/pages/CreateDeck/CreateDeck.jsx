@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useLogin } from '../../../../context/loginProvider';
-import Deck from '../Deck/Deck';
+import Deck from '../../component/Decks/Deck/Deck';
+import { useLogin } from '../../context/loginProvider';
 import './CreateDeck.scss';
 
 function CreateDeck() {

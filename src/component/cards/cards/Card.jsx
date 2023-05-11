@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useLogin } from '../../../../context/loginProvider';
-import { addCard, deleteCard, getNumberCard } from '../../../../utils/requetes';
+import { useLogin } from '../../../context/loginProvider';
+import { addCard, deleteCard, getNumberCard } from '../../../utils/requetes';
 import './Card.scss';
 
 function Card({

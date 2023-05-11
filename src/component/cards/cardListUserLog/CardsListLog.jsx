@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Card from './Card';
-import { useLogin } from '../../../../context/loginProvider';
+import Card from '../cards/Card';
+import { useLogin } from '../../../context/loginProvider';
 import './CardsListLog.scss';
 import {
   getNumberTotalInTheDeck,
   getPersonnageNumberInTheDeck,
-} from '../../../../utils/requetes';
+} from '../../../utils/requetes';
 
 function CardsListLog() {
   const { choiceDeck } = useLogin();
