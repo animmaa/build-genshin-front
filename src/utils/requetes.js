@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 /* requetes pour Card.jsx */
 
@@ -21,8 +22,8 @@ export const addCard = async (choiceDeck, idCard) => {
         card_id: idCard,
       },
     );
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    toast.error(error.response.data);
   }
   return null;
 };

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../cards/Card';
+import CardPerson from '../cards/CardPerson';
 import { useLogin } from '../../../context/loginProvider';
 import './CardsListLog.scss';
 import {
@@ -10,6 +11,7 @@ import {
 } from '../../../utils/requetes';
 
 function CardsListLog() {
+  const arrayTypeCard = ['personnage', 'event', 'equipement', 'support'];
   const { choiceDeck } = useLogin();
   const [cardList, setCardList] = useState([]);
   const navigator = useNavigate();
@@ -45,43 +47,24 @@ function CardsListLog() {
   useEffect(() => {
     getCardsList();
   }, [triCarte]);
-
   return (
     <div className="cards_list_log">
       <div>
         <h3>Liste des cartes</h3>
       </div>
       <div className="select_type_cards">
-        <button
-          className={triCarte === 'personnage' ? 'is_button' : 'button'}
-          type="button"
-          onClick={() => setTriCarte('personnage')}
-        >
-          Cartes personnages
-        </button>
-        <button
-          className={triCarte === 'event' ? 'is_button' : 'button'}
-          type="button"
-          onClick={() => setTriCarte('event')}
-        >
-          Cartes évènement
-        </button>
-        <button
-          className={triCarte === 'equipement' ? 'is_button' : 'button'}
-          type="button"
-          onClick={() => setTriCarte('equipement')}
-        >
-          Cartes équipement
-        </button>
-        <button
-          className={triCarte === 'support' ? 'is_button' : 'button'}
-          type="button"
-          onClick={() => setTriCarte('support')}
-        >
-          Cartes support
-        </button>
+        {arrayTypeCard.map((type) => (
+          <button
+            className={triCarte === type ? 'is_button' : 'button'}
+            type="button"
+            onClick={() => setTriCarte(type)}
+            key={type}
+          >
+            {`cartes ${type}`}
+          </button>
+        ))}
       </div>
-      {choiceDeck ? (
+      {choiceDeck && (
         <>
           <h4>
             Nombre carte personnage &#129;
@@ -94,22 +77,34 @@ function CardsListLog() {
             &#129; / 30
           </h4>
         </>
-      ) : null}
+      )}
       <div className="grid_cards">
         {cardList.map((el) => (
           <div className="zone_card" key={el.id}>
             <div>
               <img src={el.url} alt="" />
             </div>
-            <Card
-              nameCard={el.name}
-              elementCard={el.element}
-              idCard={el.id}
-              getPersonnageNumberCardInTheDeck={
-                getPersonnageNumberCardInTheDeck
-              }
-              getNumberTotalCardInTheDeck={getNumberTotalCardInTheDeck}
-            />
+            {triCarte === 'personnage' ? (
+              <CardPerson
+                nameCard={el.name}
+                elementCard={el.element}
+                idCard={el.id}
+                getPersonnageNumberCardInTheDeck={
+                  getPersonnageNumberCardInTheDeck
+                }
+                getNumberTotalCardInTheDeck={getNumberTotalCardInTheDeck}
+              />
+            ) : (
+              <Card
+                nameCard={el.name}
+                elementCard={el.element}
+                idCard={el.id}
+                getPersonnageNumberCardInTheDeck={
+                  getPersonnageNumberCardInTheDeck
+                }
+                getNumberTotalCardInTheDeck={getNumberTotalCardInTheDeck}
+              />
+            )}
           </div>
         ))}
       </div>

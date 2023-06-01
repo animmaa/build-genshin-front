@@ -1,4 +1,6 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './component/header/Header';
 import HomePage from './pages/homePage/HomePage';
@@ -33,6 +35,7 @@ function App() {
               <Route path="/modifdeck" element={<UpdateDeck />} />
             </Route>
           </Routes>
+          <ToastContainer autoClose={2000} />
         </Router>
       </LoginProvider>
     </div>
