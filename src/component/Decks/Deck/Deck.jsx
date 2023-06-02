@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { IconContext } from 'react-icons';
 import { BiEditAlt } from 'react-icons/bi';
 import { MdDeleteForever } from 'react-icons/md';
-import { GiCardDraw } from 'react-icons/gi';
+import { AiOutlineFileAdd } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -18,12 +18,18 @@ function Deck({
   deckImageThree,
 }) {
   const { setChoiceDeck } = useLogin();
+  const addIcon = useMemo(() => ({ className: 'global-class-add-card' }), []);
+  const editIcon = useMemo(() => ({ className: 'global-class-edit' }), []);
+  const deleteIcon = useMemo(() => ({ className: 'global-class-delete' }), []);
 
   const navigate = useNavigate();
 
   const handleDeleteDeck = async () => {
-    await axios.delete(`http://localhost:8000/api/deck/deckdelete/${idDeck}`);
-    getDeck();
+    const result = window.confirm('supprimer ce deck definitivement ?');
+    if (result) {
+      await axios.delete(`http://localhost:8000/api/deck/deckdelete/${idDeck}`);
+      getDeck();
+    }
   };
 
   const handleChoiceAddCards = () => {
@@ -34,7 +40,7 @@ function Deck({
     setChoiceDeck(idDeck);
     navigate('/modifdeck');
   };
-  //const styleIcon = {color: "red", size: {50} }
+
   return (
     <div className="deck_base">
       <div className="name_deck">
@@ -46,21 +52,16 @@ function Deck({
         <img className="image3" src={deckImageThree} alt="" />
       </div>
       <div className="logo">
-        <IconContext.Provider value={{ className: 'global-class-name' }}>
-          <BiEditAlt size={30} color="blue" onClick={handleChoiceModifDeck} />
-          <GiCardDraw size={30} onClick={handleChoiceAddCards} />
-          <MdDeleteForever size={30} color="red" onClick={handleDeleteDeck} />
+        <IconContext.Provider value={addIcon}>
+          <AiOutlineFileAdd size={30} onClick={handleChoiceAddCards} />
+        </IconContext.Provider>
+        <IconContext.Provider value={editIcon}>
+          <BiEditAlt size={30} onClick={handleChoiceModifDeck} />
+        </IconContext.Provider>
+        <IconContext.Provider value={deleteIcon}>
+          <MdDeleteForever size={30} onClick={handleDeleteDeck} />
         </IconContext.Provider>
       </div>
-      {/* <button type="button" onClick={handleChoiceAddCards}>
-        ajout carte
-      </button>
-      <button type="button" onClick={handleDeleteDeck}>
-        supprimer deck
-      </button>
-      <button type="button" onClick={handleChoiceModifDeck}>
-        modif deck
-      </button> */}
     </div>
   );
 }

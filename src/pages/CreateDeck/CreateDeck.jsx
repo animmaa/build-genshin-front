@@ -6,7 +6,6 @@ import { useLogin } from '../../context/loginProvider';
 import './CreateDeck.scss';
 
 function CreateDeck() {
-  const [nameNewDeck, setNameNewDeck] = useState('New Deck');
   const {
     user: { id },
   } = useLogin();
@@ -31,14 +30,15 @@ function CreateDeck() {
 
   return (
     <div className="createDeck">
-      
       <div className="grid_deck">
         <div className="blanckDeck">
           <div
             className="cadre"
+            role="presentation"
             type="submit"
             value="creer deck"
             onClick={() => addDeck()}
+            onKeyDown={() => addDeck()}
           >
             <MdAddToPhotos size={60} />
           </div>

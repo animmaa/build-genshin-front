@@ -1,11 +1,12 @@
 import './Header.scss';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { GrLogout } from 'react-icons/gr';
 import { IconContext } from 'react-icons';
 
 import { useLogin } from '../../context/loginProvider';
 
 function Header() {
+  const logoutIcon = useMemo(() => ({ className: 'global-class-logout' }), []);
   const { user } = useLogin();
 
   const handleDeleteLocalStorage = () => {
@@ -29,7 +30,7 @@ function Header() {
             <button type="button">Liste deck user</button>
           </a>
           <a href="/Connection" className="test">
-            <IconContext.Provider value={{ className: 'global-class-name' }}>
+            <IconContext.Provider value={logoutIcon}>
               <button type="button" onClick={handleDeleteLocalStorage}>
                 <GrLogout color="blue" onClick={handleDeleteLocalStorage} />
               </button>
