@@ -13,15 +13,26 @@
     justify-content: space-around;
     align-items: center;
 
+    .global-class-name {
+      background-color: white;
+      padding: 20px;
+    }
+    .test {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
     a {
-      height: 90%;
+      flex-grow: 1;
+      height: 100%;
 
       button {
         height: 100%;
-        width: 10vw;
+        width: 100%;
         background-color: black;
         border: none;
-        border-radius: 20px;
         color: white;
         font-size: large;
         font-weight: 600;
@@ -31,5 +42,6 @@
         background: rgba(210, 207, 207, 0.226);
       }
     }
+
   }
 }

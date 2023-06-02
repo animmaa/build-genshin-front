@@ -5,25 +5,35 @@
     display: flex;
     flex-wrap: wrap;
     padding-top: 5vh;
+    gap: 2rem
   }
   .blanckDeck {
-    height: 18rem;
+    height: 23rem;
     padding: 15px 3vw;
-    width: 10rem;
-   // background-color: green;
+    width: 15rem;
+    // background-color: green;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-align-items: center;
+    justify-content: space-around;
+    align-items: center;
+    .cadre{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 8rem;
+      height: 8rem;
+      border: dashed 4px;
+      border-radius: 1rem;
+    }
     img {
-     // padding: 0 1em;
+      // padding: 0 1em;
       height: 12rem;
       opacity: 0.3;
     }
 
-      input {
-        width: 100px;
-      }
-
+    input {
+      width: 150px;
+    }
   }
 }

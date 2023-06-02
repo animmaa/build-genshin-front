@@ -1,5 +1,7 @@
 import './Header.scss';
 import React from 'react';
+import { GrLogout } from 'react-icons/gr';
+import { IconContext } from 'react-icons';
 
 import { useLogin } from '../../context/loginProvider';
 
@@ -26,10 +28,12 @@ function Header() {
           <a href="/deckuser">
             <button type="button">Liste deck user</button>
           </a>
-          <a href="/Connection">
-            <button type="button" onClick={handleDeleteLocalStorage}>
-              Deconnexion
-            </button>
+          <a href="/Connection" className="test">
+            <IconContext.Provider value={{ className: 'global-class-name' }}>
+              <button type="button" onClick={handleDeleteLocalStorage}>
+                <GrLogout color="blue" onClick={handleDeleteLocalStorage} />
+              </button>
+            </IconContext.Provider>
           </a>
         </div>
       ) : (
