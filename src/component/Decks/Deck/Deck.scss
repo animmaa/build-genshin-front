@@ -40,40 +40,36 @@
     justify-content: space-evenly;
 
     .global-class-add-card {
-      //background-color: rgb(238, 238, 238);
-      //background-color: rgb(246, 232, 215);
       padding: 10px;
       border-radius: 50%;
 
       background-color: #22c55e;
     }
+
     .global-class-edit {
       background-color: rgb(238, 238, 238);
-      //background-color: rgb(246, 232, 215);
       padding: 10px;
       border-radius: 50%;
-      
-
-      //background-color: rgb(114, 204, 114);
     }
+
     .global-class-delete {
       background-color: rgb(238, 238, 238);
-      //background-color: rgb(246, 232, 215);
       padding: 10px;
       border-radius: 50%;
+    }
 
-      //background-color: rgb(114, 204, 114);
-    }
     .global-class-add-card:hover {
-      background-color: #22C55E;
+      background-color: #22c55e;
       cursor: pointer;
     }
+
     .global-class-edit:hover {
-      background-color: #64748B;
+      background-color: #64748b;
       cursor: pointer;
     }
+
     .global-class-delete:hover {
-      background-color: #EF4444;
+      background-color: #ef4444;
       cursor: pointer;
     }
   }
