@@ -30,8 +30,8 @@ function App() {
             <Route path="/inscription" element={<Inscription />} />
             <Route path="/deckuser" element={<AllDeck />} />
             <Route element={<Authorized />}>
-              <Route path="/profil" element={<Profil />} />
               <Route path="/mydecks" element={<CreateDeck />} />
+              <Route path="/profil" element={<Profil />} />
               <Route path="/modifdeck" element={<UpdateDeck />} />
             </Route>
           </Routes>

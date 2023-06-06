@@ -24,6 +24,16 @@
       align-items: center;
     }
 
+    .active {
+      button {
+        background-color: white;
+        color: black;
+      }
+      button:hover{
+        background-color: white;
+      }
+    }
+
     a {
       flex-grow: 1;
       height: 100%;
@@ -42,6 +52,5 @@
         background: rgba(210, 207, 207, 0.226);
       }
     }
-
   }
 }
