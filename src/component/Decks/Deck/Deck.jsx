@@ -3,6 +3,7 @@ import { IconContext } from 'react-icons';
 import { BiEditAlt } from 'react-icons/bi';
 import { MdDeleteForever } from 'react-icons/md';
 import { AiOutlineFileAdd } from 'react-icons/ai';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -53,15 +54,38 @@ function Deck({
       </div>
       <div className="logo">
         <IconContext.Provider value={addIcon}>
-          <AiOutlineFileAdd size={30} onClick={handleChoiceAddCards} />
+          <AiOutlineFileAdd
+            size={30}
+            id="icon-add-card"
+            onClick={handleChoiceAddCards}
+          />
         </IconContext.Provider>
         <IconContext.Provider value={editIcon}>
-          <BiEditAlt size={30} onClick={handleChoiceModifDeck} />
+          <BiEditAlt size={30} id="icon-edit" onClick={handleChoiceModifDeck} />
         </IconContext.Provider>
         <IconContext.Provider value={deleteIcon}>
-          <MdDeleteForever size={30} onClick={handleDeleteDeck} />
+          <MdDeleteForever
+            size={30}
+            id="icon-delete"
+            onClick={handleDeleteDeck}
+          />
         </IconContext.Provider>
       </div>
+      <ReactTooltip
+        anchorId="icon-add-card"
+        place="bottom"
+        content="Ajouter les cartes dans le deck"
+      />
+      <ReactTooltip
+        anchorId="icon-edit"
+        place="bottom"
+        content="Modifier image et nom du deck"
+      />
+      <ReactTooltip
+        anchorId="icon-delete"
+        place="bottom"
+        content="Supprimer le deck"
+      />
     </div>
   );
 }

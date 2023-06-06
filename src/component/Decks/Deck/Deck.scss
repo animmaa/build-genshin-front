@@ -45,7 +45,7 @@
       padding: 10px;
       border-radius: 50%;
 
-      background-color: rgb(140, 213, 140);
+      background-color: #22c55e;
     }
     .global-class-edit {
       background-color: rgb(238, 238, 238);
@@ -65,15 +65,15 @@
       //background-color: rgb(114, 204, 114);
     }
     .global-class-add-card:hover {
-      background-color: rgb(65, 202, 65);
+      background-color: #22C55E;
       cursor: pointer;
     }
     .global-class-edit:hover {
-      background-color: rgb(206, 208, 206);
+      background-color: #64748B;
       cursor: pointer;
     }
     .global-class-delete:hover {
-      background-color: rgb(241, 111, 111);
+      background-color: #EF4444;
       cursor: pointer;
     }
   }
