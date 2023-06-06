@@ -17,7 +17,7 @@ function CardsListLog() {
   const navigator = useNavigate();
   const [triCarte, setTriCarte] = useState('personnage');
   const [nomberPersonnage, setNomberPersonnage] = useState(0);
-  const [nomberCardInTheDeck, setNomberCardInTheDeck] = useState(0);
+  const [nomberCardActionInTheDeck, setNomberCardActionInTheDeck] = useState(0);
 
   const getPersonnageNumberCardInTheDeck = async () => {
     if (choiceDeck) {
@@ -29,7 +29,7 @@ function CardsListLog() {
   const getNumberTotalCardInTheDeck = async () => {
     if (choiceDeck) {
       const response = await getNumberTotalInTheDeck(choiceDeck);
-      setNomberCardInTheDeck(response.data.numberCard);
+      setNomberCardActionInTheDeck(response.data.numberCard);
     }
   };
 
@@ -49,9 +49,6 @@ function CardsListLog() {
   }, [triCarte]);
   return (
     <div className="cards_list_log">
-      <div>
-        <h3>Liste des cartes</h3>
-      </div>
       <div className="select_type_cards">
         {arrayTypeCard.map((type) => (
           <button
@@ -65,18 +62,18 @@ function CardsListLog() {
         ))}
       </div>
       {choiceDeck && (
-        <>
+        <div className="nb_card">
           <h4>
             Nombre carte personnage &#129;
             {nomberPersonnage}
             &#129; / 3
           </h4>
           <h4>
-            Nombre carte dans le deck &#129;
-            {nomberCardInTheDeck}
+            Nombre carte action &#129;
+            {nomberCardActionInTheDeck}
             &#129; / 30
           </h4>
-        </>
+        </div>
       )}
       <div className="grid_cards">
         {cardList.map((el) => (

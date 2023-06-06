@@ -3,9 +3,17 @@
 .cards_list_log {
   padding: 0 5vw;
 
+  .nb_card {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-evenly;
+    //background-color: blue
+  }
+
   .select_type_cards {
     display: flex;
     justify-content: space-around;
+    padding-top: 3rem;
 
     .button {
       @extend %blocButton;
