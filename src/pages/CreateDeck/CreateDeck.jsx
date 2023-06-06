@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { MdAddToPhotos } from 'react-icons/md';
 import Deck from '../../component/Decks/Deck/Deck';
 import { useLogin } from '../../context/loginProvider';
 import './CreateDeck.scss';
 
 function CreateDeck() {
-  const [nameNewDeck, setNameNewDeck] = useState('New Deck');
   const {
     user: { id },
   } = useLogin();
@@ -17,9 +17,9 @@ function CreateDeck() {
     });
   };
 
-  const addDeck = async (deckName) => {
+  const addDeck = async () => {
     await axios.post(`http://localhost:8000/api/deck/deckadd/${id}`, {
-      namedeck: deckName,
+      namedeck: 'New Deck',
     });
     getDeck();
   };
@@ -30,9 +30,19 @@ function CreateDeck() {
 
   return (
     <div className="createDeck">
-      <br />
-      <br />
       <div className="grid_deck">
+        <div className="blanckDeck">
+          <div
+            className="cadre"
+            role="presentation"
+            type="submit"
+            value="creer deck"
+            onClick={() => addDeck()}
+            onKeyDown={() => addDeck()}
+          >
+            <MdAddToPhotos size={60} />
+          </div>
+        </div>
         {decks.map((deck) => (
           <div className="deck" key={deck.id}>
             <Deck
@@ -45,26 +55,6 @@ function CreateDeck() {
             />
           </div>
         ))}
-        <div className="blanckDeck">
-          <img
-            src="https://s3.us-east-1.amazonaws.com/gamewith-en/article_tools/genshin-impact/gacha/card_i_85.png"
-            alt="imagebase"
-          />
-
-          <label htmlFor="nameDeck">
-            <input
-              value={nameNewDeck}
-              type="text"
-              id="nameDeck"
-              onChange={(event) => setNameNewDeck(event.target.value)}
-            />
-          </label>
-          <input
-            type="submit"
-            value="creer deck"
-            onClick={() => addDeck(nameNewDeck)}
-          />
-        </div>
       </div>
     </div>
   );

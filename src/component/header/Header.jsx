@@ -1,9 +1,12 @@
-import './Header.scss';
-import React from 'react';
-
+import { NavLink } from 'react-router-dom';
+import React, { useMemo } from 'react';
+import { GrLogout } from 'react-icons/gr';
+import { IconContext } from 'react-icons';
 import { useLogin } from '../../context/loginProvider';
+import './Header.scss';
 
 function Header() {
+  const logoutIcon = useMemo(() => ({ className: 'global-class-logout' }), []);
   const { user } = useLogin();
 
   const handleDeleteLocalStorage = () => {
@@ -14,35 +17,58 @@ function Header() {
     <div className="header">
       {user ? (
         <div className="align-text">
-          <a href="/profil">
+          <NavLink
+            to="/profil"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <button type="button">Mon profil</button>
-          </a>
-          <a href="/mydecks">
+          </NavLink>
+          <NavLink
+            to="/mydecks"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <button type="button">Mes decks</button>
-          </a>
-          <a href="/cardlist">
+          </NavLink>
+          <NavLink
+            to="/cardlist"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <button type="button">Liste des cartes</button>
-          </a>
-          <a href="/deckuser">
+          </NavLink>
+          <NavLink
+            to="/deckuser"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <button type="button">Liste deck user</button>
-          </a>
+          </NavLink>
           <a href="/Connection">
-            <button type="button" onClick={handleDeleteLocalStorage}>
-              Deconnexion
-            </button>
+            <IconContext.Provider value={logoutIcon}>
+              <button type="button" onClick={handleDeleteLocalStorage}>
+                <GrLogout color="blue" onClick={handleDeleteLocalStorage} />
+              </button>
+            </IconContext.Provider>
           </a>
         </div>
       ) : (
         <div className="align-text">
-          <a href="/inscription">
+          <NavLink
+            to="/inscription"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <button type="button">Inscription</button>
-          </a>
-          <a href="/cardlist">
+          </NavLink>
+          <NavLink
+            to="/cardlist"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <button type="button">Liste des cartes</button>
-          </a>
-          <a href="/Connection">
+          </NavLink>
+          <NavLink
+            to="/Connection"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <button type="button">Connexion</button>
-          </a>
+          </NavLink>
         </div>
       )}
     </div>

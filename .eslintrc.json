@@ -12,7 +12,7 @@
   "plugins": ["react"],
   "rules": {
     "react/jsx-props-no-spreading": "off",
-
+    "no-nested-ternary": "off",
     "no-restricted-syntax": [
       "error",
       "ForInStatement",

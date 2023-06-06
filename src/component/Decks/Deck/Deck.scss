@@ -1,11 +1,18 @@
 .deck_base {
   display: flex;
   flex-direction: column;
-    justify-content: space-between;
+  justify-content: space-between;
   padding: 15px 3vw;
-  width: 13rem;
-  height: 18rem;
+  width: 15rem;
+  height: 23rem;
   //background-color: red;
+  box-shadow: 3px 3px 3px 3px #00000014;
+
+  .name_deck {
+    display: flex;
+    justify-content: center;
+    min-height: 5rem;
+  }
 
   .card_deck {
     display: flex;
@@ -13,11 +20,9 @@
     align-items: center;
     font-size: large;
     height: 12rem;
+    margin-bottom: 15rem;
     //background-color: blue;
 
-    h4 {
-      z-index: 2;
-    }
     .image1 {
       transform: rotate(-25deg) translateX(-40px) translateY(-10px);
     }
@@ -28,6 +33,44 @@
     img {
       height: 12rem;
       position: absolute;
+    }
+  }
+  .logo {
+    display: flex;
+    justify-content: space-evenly;
+
+    .global-class-add-card {
+      padding: 10px;
+      border-radius: 50%;
+
+      background-color: #22c55e;
+    }
+
+    .global-class-edit {
+      background-color: rgb(238, 238, 238);
+      padding: 10px;
+      border-radius: 50%;
+    }
+
+    .global-class-delete {
+      background-color: rgb(238, 238, 238);
+      padding: 10px;
+      border-radius: 50%;
+    }
+
+    .global-class-add-card:hover {
+      background-color: #22c55e;
+      cursor: pointer;
+    }
+
+    .global-class-edit:hover {
+      background-color: #64748b;
+      cursor: pointer;
+    }
+
+    .global-class-delete:hover {
+      background-color: #ef4444;
+      cursor: pointer;
     }
   }
 }

@@ -26,7 +26,7 @@ function Connection() {
           id: data.id,
         });
         localStorage.setItem('jwt', data.credential);
-        navigate('/profil');
+        navigate('/mydecks');
       })
       .catch((err) => {
         setError(err.response.data.message);
