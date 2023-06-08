@@ -51,10 +51,7 @@ function Card({
 
   return (
     <div>
-      <div className="card">
-        <div>{nameCard}</div>
-        {elementCard && <div>{elementCard}</div>}
-      </div>
+      <div className="card">{elementCard && <div>{elementCard}</div>}</div>
       {choiceDeck && (
         <div className="number_card">
           <button
@@ -64,7 +61,7 @@ function Card({
           >
             -
           </button>
-          <div>
+          <div className="text_number_card">
             &nbsp;
             {numberCard}
             &nbsp;
@@ -78,6 +75,7 @@ function Card({
           </button>
         </div>
       )}
+      <div className="name_card">{nameCard}</div>
     </div>
   );
 }
