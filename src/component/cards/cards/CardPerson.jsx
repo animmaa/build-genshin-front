@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import { useLogin } from '../../../context/loginProvider';
 import { addCard, deleteCard, getNumberCard } from '../../../utils/requetes';
 import './Card.scss';
@@ -51,10 +52,7 @@ function Card({
 
   return (
     <div>
-      <div className="card">
-        <div>{nameCard}</div>
-        {elementCard && <div>{elementCard}</div>}
-      </div>
+      <div className="card">{elementCard && <div className="card_element">{elementCard}</div>}</div>
       {choiceDeck && (
         <div className="number_card">
           <button
@@ -62,9 +60,9 @@ function Card({
             onClick={() => deleteCardInTheDeck()}
             disabled={!!disableNegative}
           >
-            -
+            <BsArrowLeft />
           </button>
-          <div>
+          <div className="text_number_card">
             &nbsp;
             {numberCard}
             &nbsp;
@@ -74,10 +72,11 @@ function Card({
             onClick={() => addCardInTheDeck()}
             disabled={!!disablePositif}
           >
-            +
+            <BsArrowRight />
           </button>
         </div>
       )}
+      <div className="name_card">{nameCard}</div>
     </div>
   );
 }

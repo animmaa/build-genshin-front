@@ -1,8 +1,32 @@
 .card {
   display: flex;
   justify-content: space-around;
+
+  .card_element {
+    display: flex;
+    justify-content: center;
+  }
 }
-.number_card {
+.name_card {
+  padding-top: 5px;
   display: flex;
   justify-content: center;
+  text-align: center;
+}
+.number_card {
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-around;
+
+  .text_number_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 600;
+  }
+
+  button {
+    width: 40px;
+    height: 25px;
+  }
 }

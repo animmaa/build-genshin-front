@@ -78,7 +78,7 @@ function CardsListLog() {
       <div className="grid_cards">
         {cardList.map((el) => (
           <div className="zone_card" key={el.id}>
-            <div>
+            <div className="image_card">
               <img src={el.url} alt="" />
             </div>
             {triCarte === 'personnage' ? (
