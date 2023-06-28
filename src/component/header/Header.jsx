@@ -69,6 +69,12 @@ function Header() {
           >
             <button type="button">Connexion</button>
           </NavLink>
+          <NavLink
+            to="/deckuser"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
+            <button type="button">Liste deck user</button>
+          </NavLink>
         </div>
       )}
     </div>

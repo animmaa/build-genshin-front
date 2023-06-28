@@ -1,12 +1,16 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import Header from './component/header/Header';
-import HomePage from './pages/homePage/HomePage';
 import Cards from './pages/cards/Cards';
 import Inscription from './pages/inscription/Inscription';
-import LoginProvider from './context/loginProvider';
+import { useLogin } from './context/loginProvider';
 import Profil from './pages/profil/Profil';
 import Authorized from './component/authorized/Authorized';
 import AllDeck from './pages/allDeck/AllDeck';
@@ -15,29 +19,36 @@ import Connection from './pages/connection/Connection';
 import CreateDeck from './pages/CreateDeck/CreateDeck';
 import UpdateDeck from './pages/UpdateDeck/UpdateDeck';
 import './App.css';
+import DoubleConnexion from './component/authorized/DoubleConnexion';
 
 function App() {
+  const { user } = useLogin();
   return (
     <div className="App">
-      <LoginProvider>
-        <Router>
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/cardlist" element={<Cards />} />
-            <Route path="/lookallcard" element={<SeeCardDeck />} />
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              user ? <Navigate to="/mydecks" /> : <Navigate to="/connection" />
+            }
+          />
+          <Route path="/cardlist" element={<Cards />} />
+          <Route path="/inscription" element={<Inscription />} />
+          <Route path="/deckuser" element={<AllDeck />} />
+          <Route path="/lookallcard" element={<SeeCardDeck />} />
+          <Route element={<DoubleConnexion />}>
             <Route path="/connection" element={<Connection />} />
-            <Route path="/inscription" element={<Inscription />} />
-            <Route path="/deckuser" element={<AllDeck />} />
-            <Route element={<Authorized />}>
-              <Route path="/mydecks" element={<CreateDeck />} />
-              <Route path="/profil" element={<Profil />} />
-              <Route path="/modifdeck" element={<UpdateDeck />} />
-            </Route>
-          </Routes>
-          <ToastContainer autoClose={2000} />
-        </Router>
-      </LoginProvider>
+          </Route>
+          <Route element={<Authorized />}>
+            <Route path="/mydecks" element={<CreateDeck />} />
+            <Route path="/profil" element={<Profil />} />
+            <Route path="/modifdeck" element={<UpdateDeck />} />
+          </Route>
+        </Routes>
+        <ToastContainer autoClose={2000} />
+      </Router>
     </div>
   );
 }
