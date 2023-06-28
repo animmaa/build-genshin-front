@@ -12,7 +12,7 @@ function SeeCardDeck() {
   const lookAllDeck = async () => {
     if (idDeck) {
       await axios
-        .get(`http://localhost:8000/api/deck/cardlist/${idDeck}`)
+        .get(`${process.env.REACT_APP_API_URL}/deck/cardlist/${idDeck}`)
         .then((response) => {
           setListCardDeck(response.data);
         })

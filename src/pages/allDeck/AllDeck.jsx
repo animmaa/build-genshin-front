@@ -7,7 +7,7 @@ function AllDeck() {
 
   const lookAllDeck = async () => {
     await axios
-      .get('http://localhost:8000/api/deck/fulldeck')
+      .get(`${process.env.REACT_APP_API_URL}/deck/fulldeck`)
       .then((response) => {
         setAllDeck(response.data);
       });
