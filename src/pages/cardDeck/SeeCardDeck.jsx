@@ -28,8 +28,12 @@ function SeeCardDeck() {
 
   return (
     <div className="grid_cards">
-      {listCardDeck.map((details) => (
-        <div className="zone_card" key={details.name}>
+      {listCardDeck.map((details, index) => (
+        <div
+          className="zone_card"
+          // eslint-disable-next-line react/no-array-index-key
+          key={`${details.name}-${index}`}
+        >
           <div>
             <img src={details.url} alt="" />
           </div>

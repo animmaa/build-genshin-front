@@ -35,12 +35,12 @@ function App() {
             }
           />
           <Route path="/cardlist" element={<Cards />} />
+          <Route path="/inscription" element={<Inscription />} />
+          <Route path="/deckuser" element={<AllDeck />} />
           <Route path="/lookallcard" element={<SeeCardDeck />} />
           <Route element={<DoubleConnexion />}>
             <Route path="/connection" element={<Connection />} />
           </Route>
-          <Route path="/inscription" element={<Inscription />} />
-          <Route path="/deckuser" element={<AllDeck />} />
           <Route element={<Authorized />}>
             <Route path="/mydecks" element={<CreateDeck />} />
             <Route path="/profil" element={<Profil />} />
