@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export const getNumberCard = async (choiceDeck, idCard) => {
   try {
     return await axios.get(
-      `http://localhost:8000/api/deck/number/${idCard}/${choiceDeck}`,
+      `${process.env.REACT_APP_API_URL}/deck/number/${idCard}/${choiceDeck}`,
     );
   } catch (error) {
     console.error(error);
@@ -17,7 +17,7 @@ export const getNumberCard = async (choiceDeck, idCard) => {
 export const addCard = async (choiceDeck, idCard) => {
   try {
     return await axios.post(
-      `http://localhost:8000/api/card/addcardindeck/${choiceDeck}/${idCard}`,
+      `${process.env.REACT_APP_API_URL}/card/addcardindeck/${choiceDeck}/${idCard}`,
       {
         card_id: idCard,
       },
@@ -31,7 +31,7 @@ export const addCard = async (choiceDeck, idCard) => {
 export const deleteCard = async (choiceDeck, idCard) => {
   try {
     return await axios.delete(
-      `http://localhost:8000/api/card/deletecardindeck/${choiceDeck}/${idCard}`,
+      `${process.env.REACT_APP_API_URL}/card/deletecardindeck/${choiceDeck}/${idCard}`,
     );
   } catch (err) {
     console.error(err);
@@ -44,7 +44,7 @@ export const deleteCard = async (choiceDeck, idCard) => {
 export const getPersonnageNumberInTheDeck = async (choiceDeck) => {
   try {
     return await axios.get(
-      `http://localhost:8000/api/deck/totalpersonnage/${choiceDeck}`,
+      `${process.env.REACT_APP_API_URL}/deck/totalpersonnage/${choiceDeck}`,
     );
   } catch (err) {
     console.error(err);
@@ -55,7 +55,7 @@ export const getPersonnageNumberInTheDeck = async (choiceDeck) => {
 export const getNumberTotalInTheDeck = async (choiceDeck) => {
   try {
     return await axios.get(
-      `http://localhost:8000/api/deck/totalcard/${choiceDeck}`,
+      `${process.env.REACT_APP_API_URL}/deck/totalcard/${choiceDeck}`,
     );
   } catch (err) {
     console.error(err);

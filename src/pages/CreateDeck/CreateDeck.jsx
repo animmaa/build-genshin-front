@@ -13,13 +13,13 @@ function CreateDeck() {
   const [decks, setDecks] = useState([]);
 
   const getDeck = () => {
-    axios.get(`http://localhost:8000/api/deck/${id}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/deck/${id}`).then((response) => {
       setDecks(response.data);
     });
   };
 
   const addDeck = async () => {
-    await axios.post(`http://localhost:8000/api/deck/deckadd/${id}`, {
+    await axios.post(`${process.env.REACT_APP_API_URL}/deck/deckadd/${id}`, {
       namedeck: 'New Deck',
     });
     getDeck();

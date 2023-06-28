@@ -18,7 +18,7 @@ function Connection() {
 
   const onSubmit = async (values) => {
     axios
-      .post('http://localhost:8000/api/user/login', values)
+      .post(`${process.env.REACT_APP_API_URL}/user/login`, values)
       .then(({ data }) => {
         setUser({
           token: data.credential,

@@ -16,7 +16,7 @@ function Inscription() {
 
   const onSubmit = async (values) => {
     await axios
-      .post('http://localhost:8000/api/user/createuser', values)
+      .post(`${process.env.REACT_APP_API_URL}/user/createuser`, values)
       .then(() => {
         navigate('/connection');
       })

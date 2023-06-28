@@ -13,13 +13,13 @@ function UpdateDeck() {
 
   const getInfosDeck = async () => {
     await axios
-      .get(`http://localhost:8000/api/deck/infosdeck/${choiceDeck}`)
+      .get(`${process.env.REACT_APP_API_URL}/deck/infosdeck/${choiceDeck}`)
       .then((response) => setUrlImage(response.data));
   };
 
   const update = async () => {
     await axios.put(
-      `http://localhost:8000/api/deck/updatedeck/${choiceDeck}`,
+      `${process.env.REACT_APP_API_URL}/deck/updatedeck/${choiceDeck}`,
       urlImage,
     );
     navigate('/mydecks');
@@ -27,7 +27,7 @@ function UpdateDeck() {
 
   const getCardsList = async () => {
     await axios
-      .get('http://localhost:8000/api/card/personnage')
+      .get(`${process.env.REACT_APP_API_URL}/card/personnage`)
       .then((response) => {
         setListCard(response.data);
       })

@@ -35,7 +35,7 @@ function CardsListLog() {
 
   const getCardsList = async () => {
     await axios
-      .get(`http://localhost:8000/api/card/${triCarte}`)
+      .get(`${process.env.REACT_APP_API_URL}/card/${triCarte}`)
       .then((response) => {
         setCardList(response.data);
       })

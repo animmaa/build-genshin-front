@@ -28,7 +28,9 @@ function Deck({
   const handleDeleteDeck = async () => {
     const result = window.confirm('supprimer ce deck definitivement ?');
     if (result) {
-      await axios.delete(`http://localhost:8000/api/deck/deckdelete/${idDeck}`);
+      await axios.delete(
+        `${process.env.REACT_APP_API_URL}/deck/deckdelete/${idDeck}`,
+      );
       getDeck();
     }
   };
