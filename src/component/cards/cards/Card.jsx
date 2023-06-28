@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { CgMathPlus, CgMathMinus } from 'react-icons/cg';
 import { useLogin } from '../../../context/loginProvider';
 import { addCard, deleteCard, getNumberCard } from '../../../utils/requetes';
 import './Card.scss';
@@ -59,7 +60,7 @@ function Card({
             onClick={() => deleteCardInTheDeck()}
             disabled={!!disableNegative}
           >
-            -
+            <CgMathMinus />
           </button>
           <div className="text_number_card">
             &nbsp;
@@ -71,7 +72,7 @@ function Card({
             onClick={() => addCardInTheDeck()}
             disabled={!!disablePositif}
           >
-            +
+            <CgMathPlus />
           </button>
         </div>
       )}

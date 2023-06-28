@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { MdAddToPhotos } from 'react-icons/md';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 import Deck from '../../component/Decks/Deck/Deck';
 import { useLogin } from '../../context/loginProvider';
 import './CreateDeck.scss';
@@ -33,6 +34,7 @@ function CreateDeck() {
       <div className="grid_deck">
         <div className="blanckDeck">
           <div
+            id="add-new-deck"
             className="cadre"
             role="presentation"
             type="submit"
@@ -56,6 +58,11 @@ function CreateDeck() {
           </div>
         ))}
       </div>
+      <ReactTooltip
+        anchorId="add-new-deck"
+        place="bottom"
+        content="Créer un nouveaux deck"
+      />
     </div>
   );
 }
