@@ -19,6 +19,7 @@ import Connection from './pages/connection/Connection';
 import CreateDeck from './pages/CreateDeck/CreateDeck';
 import UpdateDeck from './pages/UpdateDeck/UpdateDeck';
 import './App.css';
+import DoubleConnexion from './component/authorized/DoubleConnexion';
 
 function App() {
   const { user } = useLogin();
@@ -35,7 +36,9 @@ function App() {
           />
           <Route path="/cardlist" element={<Cards />} />
           <Route path="/lookallcard" element={<SeeCardDeck />} />
-          <Route path="/connection" element={<Connection />} />
+          <Route element={<DoubleConnexion />}>
+            <Route path="/connection" element={<Connection />} />
+          </Route>
           <Route path="/inscription" element={<Inscription />} />
           <Route path="/deckuser" element={<AllDeck />} />
           <Route element={<Authorized />}>
