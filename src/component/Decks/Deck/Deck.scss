@@ -4,9 +4,15 @@
   justify-content: space-between;
   padding: 15px 3vw;
   width: 15rem;
-  height: 23rem;
-  //background-color: red;
+  height: 24rem;
   box-shadow: 3px 3px 3px 3px #00000014;
+
+  .container_publish {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    height: 10px;
+  }
 
   .name_deck {
     display: flex;
@@ -21,7 +27,6 @@
     font-size: large;
     height: 12rem;
     margin-bottom: 15rem;
-    //background-color: blue;
 
     .image1 {
       transform: rotate(-25deg) translateX(-40px) translateY(-10px);
