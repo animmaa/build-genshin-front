@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../../context/loginProvider';
-import './Connection.scss';
+import './Login.scss';
 
-function Connection() {
+function Login() {
   const { setUser } = useLogin();
   const [error, setError] = useState(null);
   const {
@@ -76,4 +76,4 @@ function Connection() {
   );
 }
 
-export default Connection;
+export default Login;
