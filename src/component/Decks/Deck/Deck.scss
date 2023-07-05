@@ -29,10 +29,33 @@
     margin-bottom: 15rem;
 
     .image1 {
+      animation-name: cardLeft;
+      animation-duration: 2s;
+      transition: 1s ease-in-out;
       transform: rotate(-25deg) translateX(-40px) translateY(-10px);
     }
     .image3 {
+      animation-name: cardRigth;
+      animation-duration: 2s;
+      transition: 1s ease-in-out;
       transform: rotate(25deg) translateX(40px);
+    }
+
+    @keyframes cardLeft {
+      0% {
+        transform: translate(0px, 0px);
+      }
+      100% {
+        transform: rotate(-25deg) translateX(-40px) translateY(-10px);
+      }
+    }
+    @keyframes cardRigth {
+      0% {
+        transform: translate(0px, 0px);
+      }
+      100% {
+        transform: rotate(25deg) translateX(40px);
+      }
     }
 
     img {
