@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Inscription.scss';
+import { toast } from 'react-toastify';
+import './Register.scss';
 
-function Inscription() {
+function Register() {
   const [error, setError] = useState('');
   const {
     register,
@@ -15,14 +16,18 @@ function Inscription() {
   const navigate = useNavigate();
 
   const onSubmit = async (values) => {
-    await axios
-      .post(`${process.env.REACT_APP_API_URL}/user/createuser`, values)
-      .then(() => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/user/createuser`,
+        values,
+      );
+      toast.success(response.data.message);
+      setTimeout(() => {
         navigate('/connection');
-      })
-      .catch((err) => {
-        setError(err.response.data.message);
-      });
+      }, 1500);
+    } catch (err) {
+      setError(err.response.data.message);
+    }
   };
 
   return (
@@ -31,6 +36,20 @@ function Inscription() {
         <h1>Bienvenue</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="cadre-label">
+            <label htmlFor="email">
+              <input
+                id="email"
+                placeholder="Email"
+                {...register('email', { required: true, maxLength: 200 })}
+              />
+              {errors.pseudo && errors.pseudo.type === 'required' && (
+                <span>This is required</span>
+              )}
+              {errors.pseudo && errors.pseudo.type === 'maxLength' && (
+                <span>Max length exceeded</span>
+              )}
+              <br />
+            </label>
             <label htmlFor="pseudo">
               <input
                 id="pseudo"
@@ -71,4 +90,4 @@ function Inscription() {
   );
 }
 
-export default Inscription;
+export default Register;

@@ -1,7 +1,7 @@
 import React from 'react';
-import './Profil.scss';
+import './Profile.scss';
 
-function Profil() {
+function Profile() {
   return (
     <div className="profil">
       <div className="list-btn">
@@ -16,4 +16,4 @@ function Profil() {
   );
 }
 
-export default Profil;
+export default Profile;
