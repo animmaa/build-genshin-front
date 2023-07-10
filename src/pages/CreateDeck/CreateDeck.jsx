@@ -5,23 +5,30 @@ import { Tooltip as ReactTooltip } from 'react-tooltip';
 import Deck from '../../component/Decks/Deck/Deck';
 import { useLogin } from '../../context/loginProvider';
 import './CreateDeck.scss';
+import checkJwt from '../../utils/checkJwt';
 
 function CreateDeck() {
   const {
     user: { id },
   } = useLogin();
   const [decks, setDecks] = useState([]);
-
-  const getDeck = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/deck/${id}`).then((response) => {
-      setDecks(response.data);
-    });
+  console.log(localStorage.getItem('jwt'));
+  const getDeck = async () => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URL}/deck/${id}`,
+      checkJwt
+    );
+    setDecks(response.data);
   };
 
   const addDeck = async () => {
-    await axios.post(`${process.env.REACT_APP_API_URL}/deck/deckadd/${id}`, {
-      namedeck: 'New Deck',
-    });
+    await axios.post(
+      `${process.env.REACT_APP_API_URL}/deck/deckadd/${id}`,
+      {
+        namedeck: 'New Deck',
+      },
+      checkJwt
+    );
     getDeck();
   };
 

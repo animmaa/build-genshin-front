@@ -33,7 +33,7 @@ function Deck({
     const result = window.confirm('supprimer ce deck definitivement ?');
     if (result) {
       await axios.delete(
-        `${process.env.REACT_APP_API_URL}/deck/deckdelete/${idDeck}`,
+        `${process.env.REACT_APP_API_URL}/deck/deckdelete/${idDeck}`
       );
       getDeck();
     }
@@ -51,7 +51,7 @@ function Deck({
 
   const getNumberCardTotalInTheDeck = async () => {
     const response = await axios.get(
-      `${process.env.REACT_APP_API_URL}/deck/totalcardinthedeck/${idDeck}`,
+      `${process.env.REACT_APP_API_URL}/deck/totalcardinthedeck/${idDeck}`
     );
     if (response.data.numberCard === 33) {
       setCheckNumberCard(false);
@@ -64,7 +64,7 @@ function Deck({
   const handleChangePublishDeck = async () => {
     try {
       const response = await axios.patch(
-        `${process.env.REACT_APP_API_URL}/deck/publish/${idDeck}`,
+        `${process.env.REACT_APP_API_URL}/deck/publish/${idDeck}`
       );
       toast.success(response.data.message);
     } catch (error) {
