@@ -4,19 +4,18 @@ import { MdAddToPhotos } from 'react-icons/md';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import Deck from '../../component/Decks/Deck/Deck';
 import { useLogin } from '../../context/loginProvider';
-import './CreateDeck.scss';
 import checkJwt from '../../utils/checkJwt';
+import './CreateDeck.scss';
 
 function CreateDeck() {
   const {
     user: { id },
   } = useLogin();
   const [decks, setDecks] = useState([]);
-  console.log(localStorage.getItem('jwt'));
   const getDeck = async () => {
     const response = await axios.get(
       `${process.env.REACT_APP_API_URL}/deck/${id}`,
-      checkJwt
+      checkJwt,
     );
     setDecks(response.data);
   };
@@ -27,7 +26,7 @@ function CreateDeck() {
       {
         namedeck: 'New Deck',
       },
-      checkJwt
+      checkJwt,
     );
     getDeck();
   };
@@ -57,6 +56,7 @@ function CreateDeck() {
             <Deck
               deckName={deck.namedeck}
               idDeck={deck.id}
+              isToggle={deck.publish}
               deckImageOne={deck.imgdeckone}
               deckImageTwo={deck.imgdecktwo}
               deckImageThree={deck.imgdeckthree}
