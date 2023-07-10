@@ -4,6 +4,7 @@ import { MdAddToPhotos } from 'react-icons/md';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import Deck from '../../component/Decks/Deck/Deck';
 import { useLogin } from '../../context/loginProvider';
+import checkJwt from '../../utils/checkJwt';
 import './CreateDeck.scss';
 
 function CreateDeck() {
@@ -11,17 +12,22 @@ function CreateDeck() {
     user: { id },
   } = useLogin();
   const [decks, setDecks] = useState([]);
-
-  const getDeck = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/deck/${id}`).then((response) => {
-      setDecks(response.data);
-    });
+  const getDeck = async () => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URL}/deck/${id}`,
+      checkJwt,
+    );
+    setDecks(response.data);
   };
 
   const addDeck = async () => {
-    await axios.post(`${process.env.REACT_APP_API_URL}/deck/deckadd/${id}`, {
-      namedeck: 'New Deck',
-    });
+    await axios.post(
+      `${process.env.REACT_APP_API_URL}/deck/deckadd/${id}`,
+      {
+        namedeck: 'New Deck',
+      },
+      checkJwt,
+    );
     getDeck();
   };
 
@@ -50,6 +56,7 @@ function CreateDeck() {
             <Deck
               deckName={deck.namedeck}
               idDeck={deck.id}
+              isToggle={deck.publish}
               deckImageOne={deck.imgdeckone}
               deckImageTwo={deck.imgdecktwo}
               deckImageThree={deck.imgdeckthree}

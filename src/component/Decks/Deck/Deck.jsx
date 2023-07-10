@@ -20,6 +20,7 @@ function Deck({
   getDeck,
   deckImageTwo,
   deckImageThree,
+  isToggle,
 }) {
   const { setChoiceDeck } = useLogin();
   const addIcon = useMemo(() => ({ className: 'global-class-add-card' }), []);
@@ -78,7 +79,7 @@ function Deck({
         <div className="container_publish">
           <div id={`publish-${idDeck}`}>
             <Toggle
-              defaultChecked={false}
+              defaultChecked={!!isToggle}
               disabled={checkNumberCard}
               onClick={handleChangePublishDeck}
             />
@@ -151,6 +152,7 @@ Deck.propTypes = {
   deckImageTwo: PropTypes.string.isRequired,
   deckImageThree: PropTypes.string.isRequired,
   getDeck: PropTypes.func.isRequired,
+  isToggle: PropTypes.number.isRequired,
 };
 
 export default Deck;
